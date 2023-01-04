@@ -25,7 +25,7 @@ class Docente extends Model
 
     public function cursos()
     {
-        return $this->belongsToMany(Curso::class,'CursoxDocente','Docente_id','Curso_id');
+        return $this->belongsToMany(Curso::class,'cursoxdocente','Docente_id','Curso_id');
     }
 
     public function carrera_ciclo()

@@ -74,6 +74,4 @@ class Curso_Controller extends Controller
             ->with('lstNiveles_Ru', $lstNiveles)
             ->with('Curso', $curso);
     }
-
-
 }
