@@ -268,7 +268,19 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Docente</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" disabled value="Docente 1">
+                                    <select class="form-control" name="id_Docente">
+                                        @foreach ($lstDocentes as $Docente)
+                                        <option name="docente" value="{{ $Docente->id_Docente }}">{{ $Docente->usuario->persona->nombres }} {{ $Docente->usuario->persona->apellidos }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="mb-1">Docente</label>
+                                    <select class="form-control" name="id_Docente">
+                                        @foreach ($lstNiveles_Ru as $NivelRubrica)
+                                        <option name="nv_rubrica" value="{{ $NivelRubrica->id_NR }}">{{ $NivelRubrica->nivel_R  }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="card card-default">
@@ -292,7 +304,7 @@
                                                     <td contenteditable="true" class="data"></td>
                                                     <td class="data">
                                                         <div class="btn-group-sm">
-                                                            <button class="btn btn-danger delete">
+                                                            <button submit class="btn btn-danger delete">
                                                                 <i class="fas fa-trash-alt"></i> Delete </button>
                                                         </div>
                                                     </td>

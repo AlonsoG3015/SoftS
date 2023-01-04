@@ -67,8 +67,13 @@ class Curso_Controller extends Controller
         $curso = Curso::with('linea')->where('id_Curso','=', $id_Curso)->first();
         $lstNiveles = Nivel_Rubrica::all();
 
+        $lstDocentes = Docente::with('usuario.persona')->where('CC_id', $id_Curso )->get();
+
         return view('curso')
+            ->with('lstDocentes', $lstDocentes)
             ->with('lstNiveles_Ru', $lstNiveles)
             ->with('Curso', $curso);
     }
+
+
 }
