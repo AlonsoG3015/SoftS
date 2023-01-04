@@ -275,7 +275,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label class="mb-1">Docente</label>
+                                    <label class="mb-1">Nivel de la R&uacute;brica</label>
                                     <select class="form-control" name="id_Docente">
                                         @foreach ($lstNiveles_Ru as $NivelRubrica)
                                         <option name="nv_rubrica" value="{{ $NivelRubrica->id_NR }}">{{ $NivelRubrica->nivel_R  }}</option>
