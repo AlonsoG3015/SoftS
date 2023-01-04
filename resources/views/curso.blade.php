@@ -282,7 +282,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-
                                 <div class="card card-default">
                                     <div class="card-header">
                                         <h3 class="card-title">R&uacute;brica</h3>
@@ -293,13 +292,11 @@
                                                 <tr>
                                                     <th> Habilidad Blanda </th>
                                                     <th> Descripci&oacute;n </th>
-                                                    <th> Puntaje </th>
                                                     <th> Acciones </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td contenteditable="true" class="data"></td>
                                                     <td contenteditable="true" class="data"></td>
                                                     <td contenteditable="true" class="data"></td>
                                                     <td class="data">
