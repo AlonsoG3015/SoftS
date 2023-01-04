@@ -9,7 +9,7 @@ class Linea extends Model
 {
     use HasFactory;
 
-    protected $table = 'linea_Investigacion';
+    protected $table = 'linea_investigacion';
     protected $primaryKey = 'id_Line';
 
     public $incrementing = true;
