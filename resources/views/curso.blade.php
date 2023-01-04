@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
+    <link rel="stylesheet" href="/css/App/rubrica.css" type="text/css" />
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -271,21 +273,36 @@
 
                                 <div class="card card-default">
                                     <div class="card-header">
-                                        <h3 class="card-title">Dropzone.js <small><em>jQuery File Upload</em> like look</small></h3>
+                                        <h3 class="card-title">R&uacute;brica</h3>
                                     </div>
                                     <div class="card-body">
-                                        <div id="actions" class="row">
-                                            <div class="col-lg-6">
-                                                <div class="btn-group w-100">
-                                                    <input src="/archivo_subido" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" type='file' id="imgInp" onchange="loadFile(event)" />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <table class="table data table-bordered my-4">
+                                            <thead>
+                                                <tr>
+                                                    <th> Habilidad Blanda </th>
+                                                    <th> Descripci&oacute;n </th>
+                                                    <th> Puntaje </th>
+                                                    <th> Acciones </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td contenteditable="true" class="data"></td>
+                                                    <td contenteditable="true" class="data"></td>
+                                                    <td contenteditable="true" class="data"></td>
+                                                    <td class="data">
+                                                        <div class="btn-group-sm">
+                                                            <button class="btn btn-danger delete">
+                                                                <i class="fas fa-trash-alt"></i> Delete </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
                                     </div>
 
                                 </div>
-
-                                <iframe id="blah" style="text-align:center;" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>
                             </div>
                         </form>
 
@@ -331,45 +348,35 @@
 
     <script src="/js/DataTables/datatable-buttons/dataTables.buttons.min.js"></script>
 
-    <script src='table-to-excel.js'></script>
+    <script src="/js/index_rubricas.js"></script>
 
     <script>
-        var tableToExcel = new TableToExcel();
-        document.getElementById('button1').onclick = function() {
-
-            tableToExcel.render("table");
-
-        };
-        document.getElementById('button2').onclick = function() {
-            var arr = [
-                ['Name', 'Age', 'Sex', 'Country'],
-                ['ecofe', '18', 'male', 'china'],
-                ['alice', '3', 'female', 'china']
-            ]
-            tableToExcel.render(arr, [{
-                text: "title1",
-                bg: "#333",
-                color: "#fff"
-            }, {
-                text: "title2",
-                bg: "#ddd",
-                color: "#333"
-            }]);
-        };
+        $(document).on('click', '.edit', function() {
+            $(this).parent().siblings('td.data').each(function() {
+                var content = $(this).html();
+                $(this).html('<input value="' + content + '" />');
+            });
+            $(this).siblings('.save').show();
+            $(this).siblings('.delete').hide();
+            $(this).hide();
+        });
+        $(document).on('click', '.save', function() {
+            $('input').each(function() {
+                var content = $(this).val();
+                $(this).html(content);
+                $(this).contents().unwrap();
+            });
+            $(this).siblings('.edit').show();
+            $(this).siblings('.delete').show();
+            $(this).hide();
+        });
+        $(document).on('click', '.delete', function() {
+            $(this).parents('tr').remove();
+        });
+        $('.add').click(function() {
+            $(this).parents('table').append('<tr><td class="data"></td><td class="data"></td><td class="data"></td><td><button class="save">Save</button><button class="edit">Edit</button> <button class="delete">Delete</button></td></tr>');
+        });
     </script>
-
-    <script>
-        $("#imgInp").fileinput({
-            uploadUrl: "/file-upload-batch/1",
-            uploadAsync: false,
-        })
-        var loadFile = function(event) {
-            var output = document.getElementById('blah');
-            var output2 = document.getElementById('imgInp');
-            output.setAttribute("src", "/ViewerJS/#../" + output2.src);
-        };
-    </script>
-
 
     <script>
         $(function() {
