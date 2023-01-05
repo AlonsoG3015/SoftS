@@ -110,12 +110,14 @@
                         <div class="col-sm-9 ">
                             <h1>{{$semestre}}</h1>
                         </div>
-                        <div class="col col-sm-3 col-auto align-self-end">
-                            <button type="button" class=" btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
-                                <i class="fas fa-layer-group"></i>
-                                Nuevo Curso
-                            </button>
-                        </div>
+                        @if (session()->get('rol') == 1 )
+                            <div class="col col-sm-3 col-auto align-self-end">
+                                <button type="button" class=" btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
+                                    <i class="fas fa-layer-group"></i>
+                                    Nuevo Ciclo
+                                </button>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </section>

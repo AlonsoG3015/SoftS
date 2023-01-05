@@ -21,15 +21,15 @@ class Usuario_Controller extends Controller
         ]);
 
         $id_input = $validated['id'];
-        $bd_user_persona = Usuario::with('persona')->whereHas('persona', function ($query) use ($id_input) {
+        $usuario_bd = Usuario::with('persona')->whereHas('persona', function ($query) use ($id_input) {
             $query->where('login', $id_input);
         })->first();
 
-        if ($bd_user_persona->login == $validated['id'] && $bd_user_persona->password == $validated['password']) {
-            session()->put('id', strval($bd_user_persona->id_User));
-            session()->put('codigo', strval($bd_user_persona->login));
-            session()->put('nombre', strval($bd_user_persona->persona->nombres));
-            session()->put('rol', strval($bd_user_persona->Role_id));
+        if ($usuario_bd->login == $validated['id'] && $usuario_bd->password == $validated['password']) {
+            session()->put('id', strval($usuario_bd->id_User));
+            session()->put('codigo', strval($usuario_bd->login));
+            session()->put('nombre', strval($usuario_bd->persona->nombres));
+            session()->put('rol', strval($usuario_bd->Role_id));
             session()->save();
             return redirect('/');
         } else {
@@ -44,35 +44,4 @@ class Usuario_Controller extends Controller
     }
 
 
-    public function register_User(Request $request)
-    {
-        $validated = $request->validate([
-            'role' => 'required|numeric',
-            'nombres' => 'required|max:100',
-            'apellidos' => 'required|max:100',
-            'id' => 'required|numeric|max:9',
-            'email' => 'required|max:100',
-        ]);
-
-        $role = $validated['role'];
-        $nombres = $validated['nombres'];
-        $apellidos = $validated['apellidos'];
-        $id = $validated['id'];
-        $email = $validated['email'];
-
-        if ($role === 0 ) {
-            $persona = new Persona;
-            $persona->nombres = $nombres;
-            $persona->apellidos = $apellidos;
-            $persona->email = $email;
-            $persona->save();
-            
-            $estudiante = new Estudiante;
-            $estudiante->codigo = $id;
-            $estudiante->Persona_id = $persona->id_Person;
-            $estudiante->save();
-        }
-
-        return view('registroUsuario')->with(json_encode($persona))->with(json_encode($estudiante));
-    }
 }

@@ -28,7 +28,7 @@ Route::middleware(['validatedUser'])->group(function () {
 Route::post('/login', [Usuario_Controller::class, 'user_Login']);
 
 Route::middleware(['validatedLogin'])->group(function () {
-    
+
     Route::get('/', [Carrera_Ciclo_Controller::class, 'retornarCC']);
 
 
@@ -37,7 +37,6 @@ Route::middleware(['validatedLogin'])->group(function () {
     Route::get('/curso', function () {
         return view('curso');
     });
-
 
     Route::post('/curso/guardar', [Carrera_Ciclo_Controller::class, 'guardarCiclo']);
 

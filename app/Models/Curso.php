@@ -20,11 +20,11 @@ class Curso extends Model
 
     public function linea()
     {
-        return $this->belongsTo(Linea::class,'Linea_id');
+        return $this->belongsTo(Linea::class, 'Linea_id');
     }
-    
+
     public function docentes()
     {
-        return $this->belongsToMany(Docente::class,'CursoxDocente','Curso_id','Docente_id');
+        return $this->belongsToMany(Docente::class, 'cursoxdocente', 'Curso_id', 'Docente_id');
     }
 }

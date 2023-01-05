@@ -36,6 +36,9 @@ class Carrera_Ciclo_Controller extends Controller
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
 
+        // $lstCursosxDocente = Docente::with('cursos')->where('CC_id',7)->where('Usuario_id', session()->get('id'))->get();
+
+        // return session()->get('rol');
         return view('academico')
             ->with('lstSemestre', $lstSemestre)
             ->with('lstCarreras', $lstCarreras);

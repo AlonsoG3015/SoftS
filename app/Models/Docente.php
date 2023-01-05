@@ -20,17 +20,16 @@ class Docente extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'Usuario_id','id_User');
-    }
-
-    public function cursos()
-    {
-        return $this->belongsToMany(Curso::class,'cursoxdocente','Docente_id','Curso_id');
+        return $this->belongsTo(Usuario::class, 'Usuario_id', 'id_User');
     }
 
     public function carrera_ciclo()
     {
-        return $this->belongsTo(Carrera_Ciclo::class, 'CC_id','id_CC');
+        return $this->belongsTo(Carrera_Ciclo::class, 'CC_id', 'id_CC');
     }
 
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class, 'cursoxdocente', 'Docente_id', 'Curso_id');
+    }
 }
