@@ -28,15 +28,12 @@ Route::middleware(['validatedUser'])->group(function () {
 Route::post('/login', [Usuario_Controller::class, 'user_Login']);
 
 Route::middleware(['validatedLogin'])->group(function () {
-
+    
     Route::get('/', [Carrera_Ciclo_Controller::class, 'retornarCC']);
 
 
     Route::get('/curso/{id_Curso}', [Curso_Controller::class, 'retornarCurso']);
 
-    Route::get('/curso', function () {
-        return view('curso');
-    });
 
     Route::post('/curso/guardar', [Carrera_Ciclo_Controller::class, 'guardarCiclo']);
 
@@ -55,6 +52,8 @@ Route::middleware(['validatedLogin'])->group(function () {
     Route::get('/ciclo/{id_Semestre}', [Curso_Controller::class, 'retornarCursos']);
 
     Route::post('/curso/guardar', [Curso_Controller::class, 'guardarCurso']);
+
+    Route::post('/rubrica/guardar', [Curso_Controller::class, 'guardarRubrica']);
 
     Route::get('/usuarios', function () {
         return view('usuarios');

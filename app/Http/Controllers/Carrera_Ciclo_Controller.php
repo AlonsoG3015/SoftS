@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use App\Models\Carrera;
 use App\Models\Semestre;
-use App\Models\Curso;
-use App\Models\Docente;
-
+use App\Models\Rubrica;
 use App\Models\Carrera_Ciclo;
+use App\Models\Nivel_Rubrica;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\AssignOp\Concat;
 
-class Carrera_Ciclo_Controller extends Controller
+class Carrera_Ciclo_Controller extends \App\Http\Controllers\Controller
 {
 
     public function guardarCiclo(Request $request)
@@ -36,11 +38,16 @@ class Carrera_Ciclo_Controller extends Controller
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
 
-        // $lstCursosxDocente = Docente::with('cursos')->where('CC_id',7)->where('Usuario_id', session()->get('id'))->get();
+        $lstNiveles = Nivel_Rubrica::all();
 
-        // return session()->get('rol');
-        return view('academico')
-            ->with('lstSemestre', $lstSemestre)
-            ->with('lstCarreras', $lstCarreras);
+        foreach ($lstNiveles as $Nivel_Rubrica){
+            dd($Nivel_Rubrica);
+        }
+
+        // return $lstNiveles;
+
+        // return view('academico')
+        //     ->with('lstSemestre', $lstSemestre)
+        //     ->with('lstCarreras', $lstCarreras);
     }
 }

@@ -23,10 +23,6 @@ class Carrera_Ciclo extends Model
         return $this->belongsTo(Carrera::class,'Carrera_id');
     }
 
-    public function director()
-    {
-        return $this->hasOne(Director::class);
-    }
 
     public function semestre()
     {

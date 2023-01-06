@@ -27,4 +27,14 @@ class Curso extends Model
     {
         return $this->belongsToMany(Docente::class, 'cursoxdocente', 'Curso_id', 'Docente_id');
     }
+
+    public function estudiantes()
+    {
+        return $this->belongsToMany(Estudiante::class, 'estudiantexcurso', 'Curso_id', 'Estudiante_id');
+    }
+
+    public function habilidad_curso()
+    {
+        return $this->hasMany(HB_Curso::class, 'Curso_id', 'id_Curso');
+    }
 }

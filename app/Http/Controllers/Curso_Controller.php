@@ -6,9 +6,11 @@ use App\Models\Carrera_Ciclo;
 use App\Models\Curso;
 use App\Models\Director;
 use App\Models\Docente;
+use App\Models\HB_Curso;
 use App\Models\Linea;
 use App\Models\Semestre;
 use App\Models\Nivel_Rubrica;
+use App\Models\Rubrica;
 use Illuminate\Http\Request;
 
 class Curso_Controller extends Controller
@@ -33,45 +35,91 @@ class Curso_Controller extends Controller
 
         $semestre_select = Semestre::where('semestre', $semestre)->first();
 
-        if (session()->has('rol') == 1) {
-            $carrera_semestre_select = Carrera_Ciclo::with('semestre')->where('Semestre_id', '=', $semestre_select->id_Semestre)->where('Carrera_id', '=', 14)->first();
+        if (session()->get('rol') == 1) {
+            $carrera_semestre_select = Carrera_Ciclo::where('Semestre_id', '=', $semestre_select->id_Semestre)->where('Carrera_id', '=', 14)->first();
             $director_logged = Director::where('CC_id', $carrera_semestre_select->id_CC)->first();
             $carrera_ciclo = Carrera_Ciclo::where('Semestre_id', $semestre_select->id_Semestre)->where('id_CC', $director_logged->CC_id)->first();
-        } else {
-            $carrera_semestre_select = Carrera_Ciclo::with('semestre')->where('Semestre_id', '=', $semestre_select->id_Semestre)->where('Carrera_id', '=', 14)->first();
-            $docente_logged = Docente::where('CC_id', $carrera_semestre_select->id_CC)->first();
-            $carrera_ciclo = Carrera_Ciclo::where('Semestre_id', $semestre_select->id_Semestre)->where('id_CC', $docente_logged->CC_id)->first();
+            $lstLineas = Linea::where('CC_id', $carrera_ciclo->id_CC)->get();
+            $lstDocentes = Docente::with('usuario.persona')->get();
+            $lstCursos = Curso::with('linea')->whereHas('linea', function ($query) use ($carrera_ciclo) {
+                $query->where('CC_id', $carrera_ciclo->id_CC);
+            })->get();
+            $lstSemestre = Semestre::all();
+            return view('ciclo')
+                ->with('lstSemestre', $lstSemestre)
+                ->with('semestre_select', $semestre_select)
+                ->with('lstDocentes', $lstDocentes)
+                ->with('lstCursos', $lstCursos)
+                ->with('lstLineas', $lstLineas)
+                ->with('semestre', $semestre);
         }
+        if (session()->get('rol') == 2) {
+            $lstCursosxdocente = array();
+            $prueba = Docente::with('cursos.linea.carrera_ciclo')->where('Usuario_id', session()->get('id'))->first();
 
-        $lstLineas = Linea::where('CC_id', $carrera_ciclo->id_CC)->get();
+            foreach ($prueba->cursos as $curso) {
+                if ($curso->linea->carrera_ciclo->Semestre_id == $semestre_select->id_Semestre) {
+                    $lstCursosxdocente[] = $curso;
+                }
+            }
 
-        $lstDocentes = Docente::with('usuario.persona')->where('CC_id', $carrera_ciclo->id_CC)->get();
+            $carrera_ciclo = Carrera_Ciclo::where('Semestre_id', $semestre_select->id_Semestre)->first();
+            $lstSemestre = Semestre::all();
 
-        $lstCursos = Curso::with('linea')->whereHas('linea', function ($query) use ($carrera_ciclo) {
-            $query->where('CC_id', $carrera_ciclo->id_CC);
-        })->get();
-
-        $lstSemestre = Semestre::all();
-
-        return view('ciclo')
-            ->with('lstSemestre', $lstSemestre)
-            ->with('semestre_select', $semestre_select)
-            ->with('lstDocentes', $lstDocentes)
-            ->with('lstCursos', $lstCursos)
-            ->with('lstLineas', $lstLineas)
-            ->with('semestre', $semestre);
+            return view('ciclo')
+                ->with('lstSemestre', $lstSemestre)
+                ->with('semestre_select', $semestre_select)
+                ->with('lstCursos', $lstCursosxdocente)
+                ->with('semestre', $semestre);
+        }
     }
 
     public function retornarCurso($id_Curso)
     {
-        $curso = Curso::with('linea')->where('id_Curso','=', $id_Curso)->first();
+        $curso = Curso::with('linea')->where('id_Curso', '=', $id_Curso)->first();
         $lstNiveles = Nivel_Rubrica::all();
 
-        $lstDocentes = Docente::with('usuario.persona')->where('CC_id', $id_Curso )->get();
+        $lstCursos = Curso::with('docentes')->where('id_Curso', $id_Curso)->first();
+
+        foreach ($lstCursos->docentes as $docente) {
+            $id_Docente = $docente->id_Docente;
+        }
+
+        $docente = Docente::with('usuario.persona')->where('id_Docente', $id_Docente)->first();
+        $lstEstudiantes = Curso::with('estudiantes.persona')->where('id_Curso', $curso->id_Curso)->first();
+        $lstHabilidades = Curso::with('habilidad_curso')->where('id_Curso', $curso->id_Curso)->first();
+        $curso = Curso::where('id_Curso', $id_Curso)->first();
+        $rubricas = Rubrica::with('habilidadesxcurso')->get();
 
         return view('curso')
-            ->with('lstDocentes', $lstDocentes)
+            ->with('Docente', $docente)
+            ->with('lstHabilidades', $lstHabilidades)
+            ->with('lstEstudiantes',$lstEstudiantes)
             ->with('lstNiveles_Ru', $lstNiveles)
             ->with('Curso', $curso);
+    }
+
+    public function guardarRubrica(Request $request){
+
+        $nombre_rubrica = $request->input('nombre_rubrica');
+        $id_Curso = $request->input('id_Curso');
+        $nv_rubrica = $request->input('nv_rubrica');
+
+        $rubrica = new Rubrica;
+        $rubrica->nombre_rub = $nombre_rubrica;
+        $rubrica->NR_id = $nv_rubrica;
+
+        dd($request);
+        // $rubrica->save();
+
+        // $lstHabilidades = HB_Curso::where('Curso_id', $id_Curso)->get();
+
+        // foreach($lstHabilidades as $habilidad){
+
+        //     $rubrica->habilidadesxcurso()->save($habilidad);
+        // }
+
+        // return redirect()->back();
+
     }
 }

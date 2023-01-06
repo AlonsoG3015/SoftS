@@ -22,6 +22,25 @@
 
     <link rel="stylesheet" href="/css/App/rubrica.css" type="text/css" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/22.2.3/css/dx.light.css" />
+
+    <script src="https://cdn3.devexpress.com/jslib/22.2.3/js/dx.all.js"></script>
+
+    <script src="/js/index_rubricas.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" />
+
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -117,7 +136,7 @@
                                     <p class="text-muted text-center">{{$Curso->linea->linea}}</p>
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b>Estudiantes</b> <a class="float-right">32</a>
+                                            <b>Estudiantes</b> <a class="float-right">{{count($lstEstudiantes->estudiantes)}}</a>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Semanas</b> <a class="float-right">16</a>
@@ -136,10 +155,12 @@
                                     <ul class="nav nav-pills">
                                         <li class="nav-item"><a class="nav-link active" href="#rubrica" data-toggle="tab">R&uacute;bricas</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#evaluacion" data-toggle="tab">Evaluaci&oacute;n</a></li>
-                                        <li class="nav-item right-4"> <button type="button" class="btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
+                                        <li class="nav-item right-4">
+                                            <button type="button" class="btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
                                                 <i class="fas fa-layer-group"></i>
                                                 Nueva R&uacute;brica
-                                            </button></li>
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
@@ -199,28 +220,21 @@
                                                                 <table id="example2" class="table table-bordered table-striped">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>ID</th>
                                                                             <th>Nombre</th>
                                                                             <th>Apellidos</th>
                                                                             <th>Ciclo</th>
-                                                                            <th>Accion</th>
+                                                                            <th>Email</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
+                                                                        @foreach($lstEstudiantes->estudiantes as $Estudiante)
                                                                         <tr>
-                                                                            <td>000123457</td>
-                                                                            <td>Alumno 1</td>
-                                                                            <td>Apellido 1</td>
-                                                                            <td>X</td>
-                                                                            <td>X</td>
+                                                                            <td>{{$Estudiante->persona->nombres}} </td>
+                                                                            <td>{{$Estudiante->persona->apellidos}} </td>
+                                                                            <td>{{$Estudiante->less_cicle}} </td>
+                                                                            <td>{{$Estudiante->persona->email}} </td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td>000123456</td>
-                                                                            <td>Alumno 1</td>
-                                                                            <td>Apellido 1</td>
-                                                                            <td>X</td>
-                                                                            <td>X</td>
-                                                                        </tr>
+                                                                        @endforeach
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -255,30 +269,26 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <form>
-
+                        <form id="frmNuevaRubrica" method="post" action="/rubrica/guardar">
+                            @csrf
                             <div class="modal-body">
                                 <div class="form-group mb-4">
-                                    <label for="exampleInputEmail1">Nombre</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1">
+                                    <label>Nombre</label>
+                                    <input name="nombre_rubrica" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label class="mb-1">Ciclo</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" disabled value="2022-20">
+                                    <label class="mb-1">Curso</label>
+                                    <input name="id_Curso" class="form-control" disabled value="{{$Curso->id_Curso}}" required>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Docente</label>
-                                    <select class="form-control" name="id_Docente">
-                                        @foreach ($lstDocentes as $Docente)
-                                        <option name="docente" value="{{ $Docente->id_Docente }}">{{ $Docente->usuario->persona->nombres }} {{ $Docente->usuario->persona->apellidos }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" required disabled value="{{ $Docente->usuario->persona->nombres }} {{ $Docente->usuario->persona->apellidos }}">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Nivel de la R&uacute;brica</label>
-                                    <select class="form-control" name="id_Docente">
-                                        @foreach ($lstNiveles_Ru as $NivelRubrica)
-                                        <option name="nv_rubrica" value="{{ $NivelRubrica->id_NR }}">{{ $NivelRubrica->nivel_R  }}</option>
+                                    <select class="form-control">
+                                        @foreach ($lstNiveles_Ru as $Nivel_Rubrica)
+                                        <option name="nv_rubrica" value="{{ $Nivel_Rubrica->id_NR }}">{{ $Nivel_Rubrica->nivel_R }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -286,26 +296,19 @@
                                     <div class="card-header">
                                         <h3 class="card-title">R&uacute;brica</h3>
                                     </div>
-                                    <div class="card-body">
-                                        <table class="table data table-bordered my-4">
+                                    <div class="container my-2">
+                                        <table id="tabla_rubrica" class="display">
                                             <thead>
                                                 <tr>
-                                                    <th> Habilidad Blanda </th>
-                                                    <th> Descripci&oacute;n </th>
-                                                    <th> Acciones </th>
+                                                    <th>Criterios</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach($lstHabilidades->habilidad_curso as $Habilidad)
                                                 <tr>
-                                                    <td contenteditable="true" class="data"></td>
-                                                    <td contenteditable="true" class="data"></td>
-                                                    <td class="data">
-                                                        <div class="btn-group-sm">
-                                                            <button submit class="btn btn-danger delete">
-                                                                <i class="fas fa-trash-alt"></i> Delete </button>
-                                                        </div>
-                                                    </td>
+                                                    <td class="text-center">{{$Habilidad->habilidad_blanda->habilidad}}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
 
@@ -315,10 +318,9 @@
                             </div>
                         </form>
 
-
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Guardar</button>
+                            <button type="submit" form="frmNuevaRubrica" class="btn btn-success">Guardar</button>
                         </div>
                     </div>
 
@@ -339,51 +341,32 @@
 
     <script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
 
-    <script src="/js/DataTables/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-    <script src="/js/DataTables/datatables-bs4/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
-    <script src="/js/DataTables/datatable-responsive/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
 
-    <script src="/js/DataTables/datatable-responsive/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 
-    <script src="/js/DataTables/datatable-buttons/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 
-    <script src="/js/DataTables/datatable-buttons/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
-    <script src="/js/DataTables/datatable-buttons/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
 
-    <script src="/js/DataTables/datatable-buttons/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
 
-    <script src="/js/DataTables/datatable-buttons/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
 
-    <script src="/js/index_rubricas.js"></script>
+    <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
+
 
     <script>
-        $(document).on('click', '.edit', function() {
-            $(this).parent().siblings('td.data').each(function() {
-                var content = $(this).html();
-                $(this).html('<input value="' + content + '" />');
+        $(document).ready(function() {
+            $('#tabla_rubrica').DataTable({
+
             });
-            $(this).siblings('.save').show();
-            $(this).siblings('.delete').hide();
-            $(this).hide();
-        });
-        $(document).on('click', '.save', function() {
-            $('input').each(function() {
-                var content = $(this).val();
-                $(this).html(content);
-                $(this).contents().unwrap();
-            });
-            $(this).siblings('.edit').show();
-            $(this).siblings('.delete').show();
-            $(this).hide();
-        });
-        $(document).on('click', '.delete', function() {
-            $(this).parents('tr').remove();
-        });
-        $('.add').click(function() {
-            $(this).parents('table').append('<tr><td class="data"></td><td class="data"></td><td class="data"></td><td><button class="save">Save</button><button class="edit">Edit</button> <button class="delete">Delete</button></td></tr>');
         });
     </script>
 
@@ -392,15 +375,28 @@
             $("#example1").DataTable({
                 "responsive": true,
                 "lengthChange": false,
-                "autoWidth": false
+                "autoWidth": false,
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
             }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
         });
         $(function() {
             $("#example2").DataTable({
+                dom: 'Bfrtip',
                 "responsive": true,
                 "lengthChange": false,
-                "autoWidth": false
-            }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
+                "autoWidth": false,
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+            }).buttons().container().appendTo('#example2 .col-md-6:eq(0)');
         });
     </script>
 

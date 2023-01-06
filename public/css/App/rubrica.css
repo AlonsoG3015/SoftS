@@ -1,46 +1,65 @@
-@import "compass/css3";
+#grid {
+    height: 440px;
+}
 
-.table-editable.glyphicon {
+.options {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+}
+
+.caption {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.option {
+    margin-bottom: 10px;
+}
+
+.option>span {
     position: relative;
-    font-size: 20px;
-
-
+    top: 2px;
+    margin-right: 10px;
 }
 
-.table-remove {
-    color: #700;
-    cursor: pointer;
-
+.option>.dx-widget {
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.table-remove:hover {
-    color: #f00;
-
+#requests .caption {
+    float: left;
+    padding-top: 7px;
 }
 
-.table-up,
-.table-down {
-    color: #007;
-    cursor: pointer;
-
+#requests>div {
+    padding-bottom: 5px;
 }
 
-.table-up,
-.table-down:hover {
-    color: #00f;
-
+#requests>div::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-.table-add {
-    color: #070;
-    cursor: pointer;
-    position: absolute;
-    top: 8px;
-    right: 0;
-
+#requests #clear {
+    float: right;
 }
 
-.table-add:hover {
-    color: #0b0;
+#requests ul {
+    list-style: none;
+    max-height: 100px;
+    overflow: auto;
+    margin: 0;
+}
 
+#requests ul li {
+    padding: 7px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#requests ul li:last-child {
+    border-bottom: none;
 }

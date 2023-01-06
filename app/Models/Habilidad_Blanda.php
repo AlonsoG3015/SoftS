@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ciclo extends Model
+class Habilidad_Blanda extends Model
 {
     use HasFactory;
 
-    protected $table = 'ciclo';
-    protected $primaryKey = 'id_Ciclo';
+    protected $table = 'habilidad_blanda';
+    protected $primaryKey = 'id_HB';
 
     public $incrementing = true;
 
@@ -18,5 +18,9 @@ class Ciclo extends Model
 
     protected $softDelete = false;
 
-    
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class, 'cursoxhb', 'HB_id', 'Curso_id');
+    }
 }

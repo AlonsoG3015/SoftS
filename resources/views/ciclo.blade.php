@@ -111,12 +111,12 @@
                             <h1>{{$semestre}}</h1>
                         </div>
                         @if (session()->get('rol') == 1 )
-                            <div class="col col-sm-3 col-auto align-self-end">
-                                <button type="button" class=" btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
-                                    <i class="fas fa-layer-group"></i>
-                                    Nuevo Ciclo
-                                </button>
-                            </div>
+                        <div class="col col-sm-3 col-auto align-self-end">
+                            <button type="button" class=" btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
+                                <i class="fas fa-layer-group"></i>
+                                Nuevo Ciclo
+                            </button>
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -139,6 +139,7 @@
                     </div>
                 </div>
             </section>
+            @if(session()->get('rol') == 1)
             <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -161,15 +162,15 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Nombre del Curso</label>
-                                    <input type="text" class="form-control" id="inputNombre" name="nombre" required>
+                                    <input type="text" class="form-control" name="nombre" required>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="inputNombre">Ciclo</label>
-                                    <input type="text" class="form-control" id="inputNombre" name="ciclo" required disabled value="{{$semestre}}" style="font-weight: bold;">
+                                    <input type="text" class="form-control" name="ciclo" required disabled value="{{$semestre}}" style="font-weight: bold;">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Docente</label>
-                                    <select class="form-control" name="id_Docente">
+                                    <select class="form-control">
                                         @foreach ($lstDocentes as $Docente)
                                         <option name="docente" value="{{ $Docente->id_Docente }}">{{ $Docente->usuario->persona->nombres }} {{ $Docente->usuario->persona->apellidos }}</option>
                                         @endforeach
@@ -187,6 +188,7 @@
                 </div>
 
             </div>
+            @endif
 
         </div>
 

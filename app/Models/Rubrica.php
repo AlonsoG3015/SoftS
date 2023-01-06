@@ -18,4 +18,9 @@ class Rubrica extends Model
 
     protected $softDelete = false;
 
+    public function habilidadesxcurso()
+    {
+        return $this->belongsToMany(HB_Curso::class, 'hb_cursoxrubrica', 'Rubrica_id', 'Id_hb_curso');
+    }
+
 }
