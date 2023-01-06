@@ -38,9 +38,6 @@ class Carrera_Ciclo_Controller extends \App\Http\Controllers\Controller
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
 
-
-        return $lstNiveles;
-
         return view('academico')
             ->with('lstSemestre', $lstSemestre)
             ->with('lstCarreras', $lstCarreras);
