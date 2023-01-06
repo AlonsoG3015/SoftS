@@ -260,7 +260,7 @@
 
                 </div>
             </section>
-            <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+            <div class="modal fade" id="modal-default" style="display: none;">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -278,7 +278,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Curso</label>
-                                    <input name="id_Curso" class="form-control" disabled value="{{$Curso->id_Curso}}" required>
+                                    <input id="id_Curso" name="id_Curso" class="form-control" disabled value="{{$Curso->id_Curso}}" required>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Docente</label>
@@ -286,9 +286,9 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Nivel de la R&uacute;brica</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="nv_rubrica">
                                         @foreach ($lstNiveles_Ru as $Nivel_Rubrica)
-                                        <option name="nv_rubrica" value="{{ $Nivel_Rubrica->id_NR }}">{{ $Nivel_Rubrica->nivel_R }}</option>
+                                        <option id="nv_rubrica" name="nv_rubrica" value="{{ $Nivel_Rubrica->id_NR }}">{{ $Nivel_Rubrica->nivel_R }}</option>
                                         @endforeach
                                     </select>
                                 </div>
