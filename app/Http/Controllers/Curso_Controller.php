@@ -109,17 +109,17 @@ class Curso_Controller extends Controller
         $rubrica->nombre_rub = $nombre_rubrica;
         $rubrica->NR_id = $nv_rubrica;
 
-        dd($request);
-        // $rubrica->save();
+        // dd($request);
+        $rubrica->save();
 
-        // $lstHabilidades = HB_Curso::where('Curso_id', $id_Curso)->get();
+        $lstHabilidades = HB_Curso::where('Curso_id', $id_Curso)->get();
 
-        // foreach($lstHabilidades as $habilidad){
+        foreach($lstHabilidades as $habilidad){
 
-        //     $rubrica->habilidadesxcurso()->save($habilidad);
-        // }
+            $rubrica->habilidadesxcurso()->save($habilidad);
+        }
 
-        // return redirect()->back();
+        return redirect()->back();
 
     }
 }

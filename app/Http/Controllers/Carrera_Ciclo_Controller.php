@@ -38,16 +38,11 @@ class Carrera_Ciclo_Controller extends \App\Http\Controllers\Controller
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
 
-        $lstNiveles = Nivel_Rubrica::all();
 
-        foreach ($lstNiveles as $Nivel_Rubrica){
-            dd($Nivel_Rubrica);
-        }
+        return $lstNiveles;
 
-        // return $lstNiveles;
-
-        // return view('academico')
-        //     ->with('lstSemestre', $lstSemestre)
-        //     ->with('lstCarreras', $lstCarreras);
+        return view('academico')
+            ->with('lstSemestre', $lstSemestre)
+            ->with('lstCarreras', $lstCarreras);
     }
 }
