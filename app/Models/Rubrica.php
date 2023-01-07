@@ -25,6 +25,6 @@ class Rubrica extends Model
 
     public function estudiantes()
     {
-        return $this->belongsToMany(Estudiante::class, 'estudiantexrubrica', 'Rubrica_id','Estudiantes_id');
+        return $this->belongsToMany(Estudiante::class, 'estudiantexrubrica', 'Rubrica_id','Estudiante_id');
     }
 }

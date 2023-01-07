@@ -2,48 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Habilidad_Blanda;
+use App\Models\HB_Curso;
+use App\Models\Rubrica;
 use Illuminate\Http\Request;
 
 class Rubricas_Controller extends Controller
 {
 
-    public function index(Request $request)
+    public function retornarCrearRubrica($id_RC)
     {
-        if ($request->ajax()) {
-            $customers = Customer::all();
-            return datatables()->of($customers)
-                ->addColumn('action', function ($row) {
-                    $html = '<a href="#" class="btn btn-xs btn-secondary btn-edit">Edit</a> ';
-                    $html .= '<button data-rowid="' . $row->id . '" class="btn btn-xs btn-danger btn-delete">Del</button>';
-                    return $html;
-                })->toJson();
+        $rubrica = Rubrica::with('hb_cursos.habilidad_blanda')->where('id_RC', $id_RC)->first();
+        return view('rubrica')
+            ->with('Rubrica', $rubrica);
+    }
+
+    public function retornarRubricaxHabilidades($id_Rubric, $id_hb_curso)
+    {
+        $rubrica = Rubrica::with('hb_cursos.habilidad_blanda')->where('id_RC', $id_Rubric)->first();
+
+        foreach ($rubrica->hb_cursos as $hbxcurso) {
+            if ($hbxcurso->id_hb_curso == $id_hb_curso) {
+                return view('editarhabilidad')
+                    ->with('Rubrica', $rubrica->id_RC)
+                    ->with('Habilidad', $hbxcurso->habilidad_blanda);
+            }
+        }
+    }
+
+    public function guardarHabilidad(Request $request)
+    {
+
+        $rubrica_id = $request->input('rc_id');
+        $id = $request->input('id');
+        $elemental = $request->input('elemental');
+        $aceptable = $request->input('aceptable');
+        $destacado = $request->input('destacado');
+
+        $rubrica = Rubrica::where('id_RC', $rubrica_id )->with('hb_cursos.habilidad_blanda')->first();
+
+        foreach($rubrica as $rubrica){
+            foreach($rubrica->hb_cursos as $habilidad){
+                $habilidad->descripcion1 = $elemental;
+                $habilidad->descripcion2 = $aceptable;
+                $habilidad->descripcion3 = $destacado;
+            }
         }
 
-        return view('customers.index');
-    }
-
-    public function store(Request $request)
-    {
-        // do validation
-        Customer::create($request->all());
-        return ['success' => true, 'message' => 'Inserted Successfully'];
-    }
-
-    public function show($id)
-    {
-        return;
-    }
-
-    public function update($id)
-    {
-        // do validation
-        Customer::find($id)->update(request()->all());
-        return ['success' => true, 'message' => 'Updated Successfully'];
-    }
-
-    public function destroy($id)
-    {
-        Customer::find($id)->delete();
-        return ['success' => true, 'message' => 'Deleted Successfully'];
+        return redirect()->back();
     }
 }

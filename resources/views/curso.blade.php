@@ -12,34 +12,13 @@
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
-    <link rel="stylesheet" href="/css/DataTables/datatables-bs4/dataTables.bootstrap4.min.css">
-
-    <link rel="stylesheet" href="/css/DataTables/datatable-responsive/responsive.bootstrap4.min.css">
-
-    <link rel="stylesheet" href="/css/DataTables/datatable-buttons/buttons.bootstrap4.min.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-
     <link rel="stylesheet" href="/css/App/rubrica.css" type="text/css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/22.2.3/css/dx.light.css" />
-
-    <script src="https://cdn3.devexpress.com/jslib/22.2.3/js/dx.all.js"></script>
-
-    <script src="/js/index_rubricas.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css" />
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css" />
-
     <link rel="stylesheet" type="text/css" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" />
-
 
 </head>
 
@@ -352,6 +331,10 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="/js/index_rubricas.js"></script>
+
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
@@ -364,17 +347,10 @@
 
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
 
-    <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
-
-    <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
-
-    <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
-
 
     <script>
         $(document).ready(function() {
             $('#tabla_rubrica').DataTable({
-
             });
         });
     </script>

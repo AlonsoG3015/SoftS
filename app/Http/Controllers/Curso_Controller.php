@@ -121,17 +121,27 @@ class Curso_Controller extends Controller
 
         $rubrica->hb_cursos()->attach($lstidHB);
 
-        $cursoxestudiantes = Curso::with('estudiantes')->where('id_Curso',12)->get();
-        foreach($cursoxestudiantes as $curso){
+        $cursoxestudiantes = Curso::with('estudiantes')->where('id_Curso', 12)->get();
+        foreach ($cursoxestudiantes as $curso) {
             $lstEstudiantes[] = $curso->estudiantes;
         }
 
         $id_estudiantes = array();
-        foreach($lstEstudiantes[0] as $estudiante){
+        foreach ($lstEstudiantes[0] as $estudiante) {
             $id_estudiantes[] = $estudiante->id_Estudiante;
         }
 
         $rubrica->estudiantes()->attach($id_estudiantes);
+
+        $id_Rubrica = $rubrica->id_RC;
+
+        $rubrica = "/crear/rubrica/";
+
+        $direccion = $rubrica.$id_Rubrica;
+
+        return redirect($direccion)
+            ->with('Rubrica', $rubrica)
+            ->with('Curso', $id_Curso);
 
         return redirect()->back();
     }

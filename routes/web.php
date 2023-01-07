@@ -4,6 +4,8 @@ use App\Http\Controllers\Carrera_Ciclo_Controller;
 use App\Http\Controllers\Curso_Controller;
 use App\Http\Controllers\Linea_Controller;
 use App\Http\Controllers\Usuario_Controller;
+use App\Http\Controllers\Rubricas_Controller;
+use App\Models\Rubrica;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +54,12 @@ Route::middleware(['validatedLogin'])->group(function () {
     Route::get('/ciclo/{id_Semestre}', [Curso_Controller::class, 'retornarCursos']);
 
     Route::post('/curso/guardar', [Curso_Controller::class, 'guardarCurso']);
+
+    Route::get('/crear/rubrica/{id_RC}', [Rubricas_Controller::class, 'retornarCrearRubrica']);
+
+    Route::get('/crear/rubrica/habilidad/{id_RC}/{id_HB}', [Rubricas_Controller::class, 'retornarRubricaxHabilidades']);
+
+    Route::post('/crear/rubrica/habilidad/guardar', [Rubricas_Controller::class, 'guardarHabilidad']);
 
     Route::post('/rubrica/guardar', [Curso_Controller::class, 'guardarRubrica']);
 
