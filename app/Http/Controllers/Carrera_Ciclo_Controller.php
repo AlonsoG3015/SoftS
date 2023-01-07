@@ -39,26 +39,27 @@ class Carrera_Ciclo_Controller extends \App\Http\Controllers\Controller
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
 
-        $rubricas = Rubrica::with('hb_cursos')->get();
+        // $rubricas = Rubrica::with('hb_cursos')->get();
 
-        $cursoxestudiantes = Curso::with('estudiantes')->where('id_Curso',12)->get();
+        // $cursoxestudiantes = Curso::with('estudiantes')->where('id_Curso',12)->get();
 
 
-        foreach($cursoxestudiantes as $curso){
-            $lstEstudiantes[] = $curso->estudiantes;
-        }
+        // foreach($cursoxestudiantes as $curso){
+        //     $lstEstudiantes[] = $curso->estudiantes;
+        // }
 
-        $id_estudiantes = array();
+        // $id_estudiantes = array();
 
-        foreach($lstEstudiantes[0] as $estudiante){
-            $id_estudiantes[] = $estudiante->id_Estudiante;
-        }
+        // foreach($lstEstudiantes[0] as $estudiante){
+        //     $id_estudiantes[] = $estudiante->id_Estudiante;
+        // }
 
-        return $rubricas;
+        // return $rubricas;
 
         // return $lstEstudiantes[0];
-        // return view('academico')
-        //     ->with('lstSemestre', $lstSemestre)
-        //     ->with('lstCarreras', $lstCarreras);
+
+        return view('academico')
+            ->with('lstSemestre', $lstSemestre)
+            ->with('lstCarreras', $lstCarreras);
     }
 }
