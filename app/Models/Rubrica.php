@@ -22,4 +22,9 @@ class Rubrica extends Model
     {
         return $this->belongsToMany(HB_Curso::class, 'hb_cursoxrubrica', 'Rubrica_id','Id_hb_curso');
     }
+
+    public function estudiantes()
+    {
+        return $this->belongsToMany(Estudiante::class, 'estudiantexrubrica', 'Rubrica_id','Estudiantes_id');
+    }
 }

@@ -27,4 +27,9 @@ class Estudiante extends Model
     {
         return $this->belongsToMany(Curso::class, 'estudiantexcurso', 'Estudiante_id', 'Curso_id');
     }
+
+    public function rubricas()
+    {
+        return $this->belongsToMany(Rubrica::class, 'estudiantexrubrica', 'Estudiante_id','Rubrica_id');
+    }
 }

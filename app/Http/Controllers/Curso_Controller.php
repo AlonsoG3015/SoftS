@@ -110,11 +110,9 @@ class Curso_Controller extends Controller
         $rubrica = new Rubrica;
         $rubrica->nombre_rub = $nombre_rubrica;
         $rubrica->NR_id = $nv_rubrica;
-
         $rubrica->save();
 
         $lstHabilidades = HB_Curso::where('Curso_id', $id_Curso)->get();
-
         $lstidHB = array();
 
         foreach ($lstHabilidades as $habilidad) {
@@ -122,6 +120,18 @@ class Curso_Controller extends Controller
         }
 
         $rubrica->hb_cursos()->attach($lstidHB);
+
+        $cursoxestudiantes = Curso::with('estudiantes')->where('id_Curso',12)->get();
+        foreach($cursoxestudiantes as $curso){
+            $lstEstudiantes[] = $curso->estudiantes;
+        }
+
+        $id_estudiantes = array();
+        foreach($lstEstudiantes[0] as $estudiante){
+            $id_estudiantes[] = $estudiante->id_Estudiante;
+        }
+
+        $rubrica->estudiantes()->attach($id_estudiantes);
 
         return redirect()->back();
     }
