@@ -8,7 +8,7 @@ use App\Models\Carrera;
 use App\Models\Semestre;
 use App\Models\Rubrica;
 use App\Models\Carrera_Ciclo;
-use App\Models\Curso;
+use App\Models\Estudiante;
 use App\Models\HB_Curso;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\AssignOp\Concat;

@@ -63,7 +63,6 @@ Route::middleware(['validatedLogin'])->group(function () {
 
     Route::post('/rubrica/guardar', [Curso_Controller::class, 'guardarRubrica']);
 
-    Route::get('/usuarios', function () {
-        return view('usuarios');
-    });
+    Route::get('/estudiantes/rubricas', [Usuario_Controller::class, 'retornarEstudiantesxRubricas']);
+
 });

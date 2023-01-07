@@ -43,5 +43,10 @@ class Usuario_Controller extends Controller
         return $role_loged;
     }
 
-
+    public function retornarEstudiantesxRubricas()
+    {
+        $estudiantes = Estudiante::with('rubricas')->get();
+        return view('estudiantes')
+            ->with('Estudiantes', $estudiantes);
+    }
 }
