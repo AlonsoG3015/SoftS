@@ -8,7 +8,7 @@ use App\Models\Carrera;
 use App\Models\Semestre;
 use App\Models\Rubrica;
 use App\Models\Carrera_Ciclo;
-use App\Models\Nivel_Rubrica;
+use App\Models\HB_Curso;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
@@ -38,8 +38,13 @@ class Carrera_Ciclo_Controller extends \App\Http\Controllers\Controller
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
 
-        return view('academico')
-            ->with('lstSemestre', $lstSemestre)
-            ->with('lstCarreras', $lstCarreras);
+        $rubricas = HB_Curso::with('rubricas')->where('Curso_id', 12)->get();
+
+        $hb_cursos = array();
+
+        return $rubricas;
+        // return view('academico')
+        //     ->with('lstSemestre', $lstSemestre)
+        //     ->with('lstCarreras', $lstCarreras);
     }
 }

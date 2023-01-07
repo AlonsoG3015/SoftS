@@ -89,17 +89,19 @@ class Curso_Controller extends Controller
         $lstEstudiantes = Curso::with('estudiantes.persona')->where('id_Curso', $curso->id_Curso)->first();
         $lstHabilidades = Curso::with('habilidad_curso')->where('id_Curso', $curso->id_Curso)->first();
         $curso = Curso::where('id_Curso', $id_Curso)->first();
-        $rubricas = Rubrica::with('habilidadesxcurso')->get();
+        $rubricas = Rubrica::with('hb_cursos')->get();
 
         return view('curso')
             ->with('Docente', $docente)
+            ->with('Rubrica', $rubricas)
             ->with('lstHabilidades', $lstHabilidades)
-            ->with('lstEstudiantes',$lstEstudiantes)
+            ->with('lstEstudiantes', $lstEstudiantes)
             ->with('lstNiveles_Ru', $lstNiveles)
             ->with('Curso', $curso);
     }
 
-    public function guardarRubrica(Request $request){
+    public function guardarRubrica(Request $request)
+    {
 
         $nombre_rubrica = $request->input('nombre_rubrica');
         $id_Curso = $request->input('id_Curso');
@@ -109,17 +111,18 @@ class Curso_Controller extends Controller
         $rubrica->nombre_rub = $nombre_rubrica;
         $rubrica->NR_id = $nv_rubrica;
 
-        // dd($request);
         $rubrica->save();
 
         $lstHabilidades = HB_Curso::where('Curso_id', $id_Curso)->get();
 
-        foreach($lstHabilidades as $habilidad){
+        $lstidHB = array();
 
-            $rubrica->habilidadesxcurso()->save($habilidad);
+        foreach ($lstHabilidades as $habilidad) {
+            $lstidHB[] = $habilidad->id_hb_curso;
         }
 
-        return redirect()->back();
+        $rubrica->hb_cursos()->attach($lstidHB);
 
+        return redirect()->back();
     }
 }

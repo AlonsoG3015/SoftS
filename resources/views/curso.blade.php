@@ -124,6 +124,15 @@
                         </div>
                     </div>
                 </div>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
             </section>
             <section class="content">
                 <div class="container-fluid">
@@ -222,8 +231,8 @@
                                                                         <tr>
                                                                             <th>Nombre</th>
                                                                             <th>Apellidos</th>
-                                                                            <th>Ciclo</th>
                                                                             <th>Email</th>
+                                                                            <th>Acciones</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -231,8 +240,8 @@
                                                                         <tr>
                                                                             <td>{{$Estudiante->persona->nombres}} </td>
                                                                             <td>{{$Estudiante->persona->apellidos}} </td>
-                                                                            <td>{{$Estudiante->less_cicle}} </td>
                                                                             <td>{{$Estudiante->persona->email}} </td>
+                                                                            <td></td>
                                                                         </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -277,8 +286,8 @@
                                     <input name="nombre_rubrica" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label class="mb-1">Curso</label>
-                                    <input id="id_Curso" name="id_Curso" class="form-control" disabled value="{{$Curso->id_Curso}}" required>
+                                    <label>Curso</label>
+                                    <input id="id_Curso" name="id_Curso" class="form-control" value="{{$Curso->id_Curso}}" required>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Docente</label>
