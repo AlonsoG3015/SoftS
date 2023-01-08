@@ -131,7 +131,7 @@ class Curso_Controller extends Controller
             $id_estudiantes[] = $estudiante->id_Estudiante;
         }
 
-        $rubrica->estudiantes()->attach($id_estudiantes);
+        $rubrica->estudiantesxrubrica()->attach($id_estudiantes);
 
         $id_Rubrica = $rubrica->id_RC;
 
