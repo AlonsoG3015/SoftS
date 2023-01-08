@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SoftS UPAO</title>
 
+
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css">
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.semanticui.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
     <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.semanticui.min.css">
+
 
 </head>
 
@@ -129,9 +131,6 @@
                             <thead>
                                 <tr>
                                     <th>Competencia/Criterio</th>
-                                    <th>Elemental</th>
-                                    <th>Aceptable</th>
-                                    <th>Destacado</th>
                                     <th width="70">Action</th>
                                 </tr>
                             </thead>
