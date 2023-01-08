@@ -38,7 +38,7 @@ Route::middleware(['validatedLogin'])->group(function () {
 
     Route::post('/perfil/guardar', [Usuario_Controller::class, 'guardarPerfil']);
 
-    Route::get('/ciclo/{id_Semestre}', [Curso_Controller::class, 'retornarCursos']);
+    Route::get('/ciclo/{id_Semestre}', [Carrera_Ciclo_Controller::class, 'retornarCursos']);
 
     Route::post('/ciclo/guardar', [Carrera_Ciclo_Controller::class, 'guardarCiclo']);
 
@@ -54,7 +54,7 @@ Route::middleware(['validatedLogin'])->group(function () {
 
     Route::post('/crear/rubrica/habilidad/guardar', [Rubricas_Controller::class, 'guardarHabilidad']);
 
-    Route::post('/rubrica/guardar', [Curso_Controller::class, 'guardarRubrica']);
+    Route::post('/rubrica/guardar', [Rubricas_Controller::class, 'guardarRubrica']);
 
     Route::get('/estudiantes', [Usuario_Controller::class, 'retornarEstudiantesxRubricas']);
 
@@ -62,9 +62,5 @@ Route::middleware(['validatedLogin'])->group(function () {
 
     Route::get('/mantenimiento_usuarios', function () {
         return view('mantenimiento_usuarios');
-    });
-
-    Route::get('/registro_usuario', function () {
-        return view('registroUsuario');
     });
 });

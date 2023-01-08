@@ -80,9 +80,7 @@ class Usuario_Controller extends Controller
         $persona->apellidos = $apellidos_input;
         $persona->email = $email_input;
         $persona->save();
-
-        // return $usuario;
-
+        
         return redirect('/perfil', 301)->with('message','¡Perfil Actualizado Correctamente!');
     }
 }

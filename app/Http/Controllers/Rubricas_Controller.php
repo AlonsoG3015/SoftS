@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Habilidad_Blanda;
+use App\Models\Curso;
 use App\Models\HB_Curso;
 use App\Models\Rubrica;
 use Illuminate\Http\Request;
@@ -53,5 +53,49 @@ class Rubricas_Controller extends Controller
         // return view('curso')->with("rubrica", $rubrica_id);
 
         return $rubrica;
+    }
+
+    public function guardarRubrica(Request $request)
+    {
+
+        $nombre_rubrica = $request->input('nombre_rubrica');
+        $id_Curso = $request->input('id_Curso');
+        $nv_rubrica = $request->input('nv_rubrica');
+
+        $rubrica = new Rubrica;
+        $rubrica->nombre_rub = $nombre_rubrica;
+        $rubrica->NR_id = $nv_rubrica;
+        $rubrica->save();
+
+        $lstHabilidades = HB_Curso::where('Curso_id', $id_Curso)->get();
+        $lstidHB = array();
+
+        foreach ($lstHabilidades as $habilidad) {
+            $lstidHB[] = $habilidad->id_hb_curso;
+        }
+
+        $rubrica->hb_cursos()->attach($lstidHB);
+
+        $cursoxestudiantes = Curso::with('estudiantes')->where('id_Curso', 12)->get();
+        foreach ($cursoxestudiantes as $curso) {
+            $lstEstudiantes[] = $curso->estudiantes;
+        }
+
+        $id_estudiantes = array();
+        foreach ($lstEstudiantes[0] as $estudiante) {
+            $id_estudiantes[] = $estudiante->id_Estudiante;
+        }
+
+        $rubrica->estudiantes()->attach($id_estudiantes);
+
+        $id_Rubrica = $rubrica->id_RC;
+
+        $rubrica = "/crear/rubrica/";
+
+        $direccion = $rubrica . $id_Rubrica;
+
+        return redirect($direccion)
+            ->with('Rubrica', $rubrica)
+            ->with('Curso', $id_Curso);
     }
 }

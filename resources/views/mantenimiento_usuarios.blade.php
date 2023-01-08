@@ -48,7 +48,7 @@
                     </div>
                     @if (session()->has('nombre'))
                     <div class="info">
-                        <a href="" class="d-block"> {{ session('nombre') }}</a>
+                        <a href="/perfil" class="d-block"> {{ session('nombre') }}</a>
                     </div>
                     @endif
                 </div>

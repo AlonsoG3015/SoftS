@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
 
     <link rel="stylesheet" href="/css/DataTables/datatables-bs4/dataTables.bootstrap4.min.css">
@@ -54,7 +54,7 @@
                     </div>
                     @if (session()->has('nombre'))
                     <div class="info">
-                        <a href="" class="d-block"> {{ session('nombre') }}</a>
+                        <a href="/perfil" class="d-block"> {{ session('nombre') }}</a>
                     </div>
                     @endif
                 </div>

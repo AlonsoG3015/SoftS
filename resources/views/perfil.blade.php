@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
     <link rel="stylesheet" href="/css/App/rubrica.css" type="text/css" />
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
@@ -58,7 +58,7 @@
                     </div>
                     @if (session()->has('nombre'))
                     <div class="info">
-                        <a href="" class="d-block "> {{ session('nombre') }}</a>
+                        <a href="/perfil" class="d-block"> {{ session('nombre') }}</a>
                     </div>
                     @endif
                 </div>
