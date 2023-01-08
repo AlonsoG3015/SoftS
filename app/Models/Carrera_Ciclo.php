@@ -23,7 +23,6 @@ class Carrera_Ciclo extends Model
         return $this->belongsTo(Carrera::class,'Carrera_id');
     }
 
-
     public function semestre()
     {
         return $this->belongsTo(Semestre::class,'Semestre_id');

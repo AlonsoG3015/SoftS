@@ -41,14 +41,16 @@ class Rubricas_Controller extends Controller
 
         $rubrica = Rubrica::where('id_RC', $rubrica_id )->with('hb_cursos.habilidad_blanda')->first();
 
-        foreach($rubrica as $rubrica){
-            foreach($rubrica->hb_cursos as $habilidad){
-                $habilidad->descripcion1 = $elemental;
-                $habilidad->descripcion2 = $aceptable;
-                $habilidad->descripcion3 = $destacado;
-            }
-        }
+        // foreach($rubrica as $rubrica){
+        //     foreach($rubrica->hb_cursos as $habilidad){
+        //         $habilidad->descripcion1 = $elemental;
+        //         $habilidad->descripcion2 = $aceptable;
+        //         $habilidad->descripcion3 = $destacado;
+        //     }
+        // }
 
-        return redirect('/');
+        // return view('curso')->with("rubrica", $rubrica_id);
+
+        // dd($request);
     }
 }

@@ -132,7 +132,7 @@
                                 <div class="py-5">
                                     <i class="fas fa-user-graduate fa-10x"></i>
                                 </div>
-                                <a href="/estudiantes/rubricas" type="button" class="py-3 w-100 btn btn-lg btn-light">
+                                <a href="/estudiantes" type="button" class="py-3 w-100 btn btn-lg btn-light">
                                     Estudiantes
                                 </a>
                             </div>

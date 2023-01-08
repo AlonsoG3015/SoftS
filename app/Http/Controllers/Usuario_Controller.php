@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Director;
 use App\Models\Estudiante;
-use App\Models\Persona;
+use App\Models\Docente;
 use App\Models\Usuario;
-use App\Models\Rol;
+use App\Models\Persona;
+
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Symfony\Component\CssSelector\Node\FunctionNode;
@@ -33,7 +35,7 @@ class Usuario_Controller extends Controller
             session()->save();
             return redirect('/');
         } else {
-            return redirect('/login');
+            return redirect('/login', 301);
         }
     }
 
@@ -43,10 +45,44 @@ class Usuario_Controller extends Controller
         return $role_loged;
     }
 
+    public function retornarUser(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $role_id = $request->session()->get('role');
+        if ($role_id == 1) {
+            $director = Director::with('usuario.persona')->with('carrera_ciclo')->where('Usuario_id', $id)->first();
+            return view('perfil')->with('Usuario', $director);
+        } else {
+
+            $usuario = Docente::with('usuario.persona')->with('cursos.linea.carrera_ciclo.semestre')->where('Usuario_id', $id)->first();
+            return view('perfil')->with('Usuario', $usuario);
+        }
+    }
+
     public function retornarEstudiantesxRubricas()
     {
         $estudiantes = Estudiante::with('rubricas')->get();
         return view('estudiantes')
             ->with('Estudiantes', $estudiantes);
+    }
+
+    public function guardarPerfil(Request $request)
+    {
+        $codigo_input = $request->input('id');
+        $nombres_input = $request->input('nombres');
+        $apellidos_input = $request->input('apellidos');
+        $email_input = $request->input('email');
+
+        $usuario = Usuario::with('persona')->where('login', $codigo_input)->first();
+        $persona = Persona::where('id_Person', $usuario->Persona_id)->first();
+
+        $persona->nombres = $nombres_input;
+        $persona->apellidos = $apellidos_input;
+        $persona->email = $email_input;
+        $persona->save();
+
+        // return $usuario;
+
+        return redirect('/perfil', 301)->with('message','¡Perfil Actualizado Correctamente!');
     }
 }

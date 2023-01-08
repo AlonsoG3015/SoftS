@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Carrera;
 use App\Models\Semestre;
-use App\Models\Rubrica;
+use App\Models\Usuario;
 use App\Models\Carrera_Ciclo;
 use App\Models\Estudiante;
 use App\Models\HB_Curso;
@@ -38,6 +38,7 @@ class Carrera_Ciclo_Controller extends \App\Http\Controllers\Controller
     {
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
+
 
         return view('academico')
             ->with('lstSemestre', $lstSemestre)

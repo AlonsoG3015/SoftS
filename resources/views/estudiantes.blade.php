@@ -127,9 +127,11 @@
 
             <div class="content">
                 <div class="row">
-                    <hr>
                     <div class="col-md-12 m-4 p-4">
-                        <table id="rubrica" class="ui celled table table-striped" style="width:100%">
+                        <hr>
+
+
+                        <table id="rubrica" class="ui celled table table-striped projects" style="width:95%">
                             <thead>
                                 <tr>
                                     <th>Competencia/Criterio</th>

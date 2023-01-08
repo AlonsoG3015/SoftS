@@ -127,11 +127,11 @@
                                 <div class="card-body">
                                     <div class="form-group mb-4">
                                         <label class="mb-1">Rubrica - ID</label>
-                                        <input type="text" class="form-control" name="rc_id" required disabled value="{{$Rubrica}}">
+                                        <input type="text" class="form-control" name="rc_id" required readonly value="{{$Rubrica}}">
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="mb-1">ID</label>
-                                        <input type="text" class="form-control" name="id" required disabled value="{{$Habilidad->id_HB}}">
+                                        <input type="text" class="form-control" name="id" required readonly value="{{$Habilidad->id_HB}}">
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="mb-1">Elemental</label>
@@ -148,7 +148,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" form="frmEditarRubric" class="btn btn-lg btn-success">Guardar</button>
+                                    <button type="submit" class="btn btn-lg btn-success">Guardar</button>
                                 </div>
                             </form>
                         </div>
