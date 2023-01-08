@@ -131,7 +131,7 @@ class Curso_Controller extends Controller
             $id_estudiantes[] = $estudiante->id_Estudiante;
         }
 
-        $rubrica->estudiantesxrubrica()->attach($id_estudiantes);
+        $rubrica->estudiantes()->attach($id_estudiantes);
 
         $id_Rubrica = $rubrica->id_RC;
 
@@ -142,7 +142,5 @@ class Curso_Controller extends Controller
         return redirect($direccion)
             ->with('Rubrica', $rubrica)
             ->with('Curso', $id_Curso);
-
-        return redirect()->back();
     }
 }
