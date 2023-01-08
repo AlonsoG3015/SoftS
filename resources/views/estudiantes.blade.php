@@ -139,13 +139,10 @@
                                 @foreach($Estudiantes as $estudiante)
                                 <tr>
                                     <th>{{$estudiante}}</th>
-                                    <!-- <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion2}}</th>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th> -->
                                     <th>
                                         <form>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="/crear/rubrica/habilidad/{{$Rubrica->id_RC}}/{{$habilidadxcurso->habilidad_blanda->id_HB}}" type="button" class="btn btn-info align-self-stretch">
+                                                <a href="" type="button" class="btn btn-info align-self-stretch">
                                                     <i class="fas fa-edit"></i>
                                                     Editar
                                                 </a>
