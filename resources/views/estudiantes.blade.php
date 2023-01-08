@@ -170,7 +170,7 @@
                                             <input type="hidden" name="id">
 
                                             <div class="form-group">
-                                                <label for="name">{{$habilidadxcurso->habilidad_blanda->habilidad}}</label>
+                                                <label for="name"></label>
                                                 <input type="text" name="name" class="form-control input-sm">
                                             </div>
                                             <div class="form-group">
