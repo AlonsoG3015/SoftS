@@ -100,12 +100,21 @@
                         <div class="col-sm-6 ">
 
                             <div class="col-sm-6 ">
-                                <h1>Estudiantes</h1>
+                                <h1>{{$Rubrica->nombre_rub}}</h1>
                             </div>
 
                         </div>
                     </div>
                 </div>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
             </section>
 
 
@@ -127,17 +136,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Estudiantes as $estudiante)
                                 <tr>
-                                    <th>{{$estudiante}}</th>
+                                    <th>{{$habilidadxcurso->habilidad_blanda->habilidad}}</th>
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion2}}</th>
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th>
                                     <th>
                                         <form>
-                                            @csrf
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="" type="button" class="btn btn-info align-self-stretch">
+                                                <a href="/crear/rubrica/habilidad/{{$Rubrica->id_RC}}/{{$habilidadxcurso->habilidad_blanda->id_HB}}" type="button" class="btn btn-info align-self-stretch">
                                                     <i class="fas fa-edit"></i>
                                                     Editar
                                                 </a>
@@ -145,8 +152,6 @@
                                         </form>
                                     </th>
                                 </tr>
-
-                                @endforeach
                             </tbody>
 
                         </table>
@@ -192,6 +197,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 

@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
     <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.semanticui.min.css">
 
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
