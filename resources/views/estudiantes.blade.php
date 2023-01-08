@@ -136,12 +136,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Rubrica->hb_cursos as $habilidadxcurso)
+                                @foreach($Estudiantes->as $estudiante)
                                 <tr>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->habilidad}}</th>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
+                                    <th>{{$estudiante}}</th>
+                                    <!-- <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion2}}</th>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th>
+                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th> -->
                                     <th>
                                         <form>
                                             <div class="btn-group" role="group" aria-label="Basic example">

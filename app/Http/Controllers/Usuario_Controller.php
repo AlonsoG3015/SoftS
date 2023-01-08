@@ -45,8 +45,8 @@ class Usuario_Controller extends Controller
 
     public function retornarEstudiantesxRubricas()
     {
-        // $estudiantes = Estudiante::with('rubricas')->first();
-        return view('estudiantes');
-            // ->with('Estudiantes', $estudiantes);
+        $estudiantes = Estudiante::with('rubricas')->get();
+        return view('estudiantes')
+            ->with('Estudiantes', $estudiantes);
     }
 }
