@@ -14,12 +14,16 @@
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.semanticui.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.semanticui.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.semanticui.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
-    <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.semanticui.min.css">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.semanticui.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.semanticui.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.semanticui.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
+
+    <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.semanticui.min.css">
 
 </head>
 
@@ -127,32 +131,50 @@
 
                         <hr>
 
-                        <table id="rubrica" class="ui celled table" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Competencia/Criterio</th>
-                                    <th width="70">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($Estudiantes as $estudiante)
-                                <tr>
-                                    <th>{{$estudiante}}</th>
-                                    <th>
-                                        <form>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="" type="button" class="btn btn-info align-self-stretch">
-                                                    <i class="fas fa-edit"></i>
-                                                    Editar
-                                                </a>
-                                            </div>
-                                        </form>
-                                    </th>
-                                </tr>
-                                @endforeach
-                            </tbody>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Projects</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
 
-                        </table>
+                                <table id="rubrica" class="ui celled table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Competencia/Criterio</th>
+                                            <th width="70">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($Estudiantes as $estudiante)
+                                        <tr>
+                                            <th>{{$estudiante}}</th>
+                                            <th>
+                                                <form>
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="" type="button" class="btn btn-info align-self-stretch">
+                                                            <i class="fas fa-edit"></i>
+                                                            Editar
+                                                        </a>
+                                                    </div>
+                                                </form>
+                                            </th>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
 
 
                         <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">

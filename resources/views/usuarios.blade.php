@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
+
     <link rel="stylesheet" href="/css/DataTables/datatables-bs4/dataTables.bootstrap4.min.css">
 
     <link rel="stylesheet" href="/css/DataTables/datatable-responsive/responsive.bootstrap4.min.css">

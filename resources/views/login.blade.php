@@ -14,6 +14,8 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="/css/App/signin.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
 
 </head>
 

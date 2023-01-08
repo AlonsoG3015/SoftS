@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
