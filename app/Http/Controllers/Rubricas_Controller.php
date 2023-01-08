@@ -22,7 +22,7 @@ class Rubricas_Controller extends Controller
         $rubrica = Rubrica::with('hb_cursos.habilidad_blanda')->where('id_RC', $id_Rubric)->first();
 
         foreach ($rubrica->hb_cursos as $hbxcurso) {
-            if ($hbxcurso->id_hb_curso == $id_hb_curso) {
+            if ($hbxcurso->id_hb_curso) {
                 return view('editarhabilidad')
                     ->with('Rubrica', $rubrica->id_RC)
                     ->with('Habilidad', $hbxcurso->habilidad_blanda);
@@ -49,6 +49,6 @@ class Rubricas_Controller extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect('/curso')->back();
     }
 }
