@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
 
     <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.semanticui.min.css">
+    
 
 </head>
 
@@ -120,6 +121,18 @@
                     </ul>
                 </div>
                 @endif
+                <div class="container-fluid align-items-end">
+                    <div class="row justify-content-end">
+                        <div class="col-sm-3">
+                            @if (session()->has('message'))
+                            <div class="alert alert-success fade show rounded alert-dismissible" role="alert">
+                                {{ session()->get('message') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </section>
 
 

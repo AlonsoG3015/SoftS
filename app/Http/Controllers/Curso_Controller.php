@@ -19,15 +19,15 @@ class Curso_Controller extends Controller
     {
         $id_LineaInvestigacion = $request->input('id_Linea');
         $nombre = $request->input('nombre');
-        $docente = $request->input('docente');
+        $id_Docente = $request->get('docente');
 
         $curso = new Curso;
         $curso->curso = $nombre;
         $curso->Linea_id = $id_LineaInvestigacion;
-        $curso->docentes->id_Docente = $docente;
         $curso->save();
+        $curso->docentes()->attach($id_Docente);
 
-        return redirect()->back();
+        return redirect()->back()->with('message', '¡Curso creado correctamente!');
     }
 
     public function retornarCursos($semestre)
@@ -137,7 +137,7 @@ class Curso_Controller extends Controller
 
         $rubrica = "/crear/rubrica/";
 
-        $direccion = $rubrica.$id_Rubrica;
+        $direccion = $rubrica . $id_Rubrica;
 
         return redirect($direccion)
             ->with('Rubrica', $rubrica)

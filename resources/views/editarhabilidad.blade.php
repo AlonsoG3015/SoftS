@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.semanticui.min.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
-    
+
     <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.semanticui.min.css">
 
 
@@ -120,14 +120,15 @@
                     <div class="col-md-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">{{$Habilidad->habilidad}}</h3>
+                                <h3 class="card-title">{{$Habilidad->habilidad}} - <strong>{{$Rubrica->nombre_rub}}</strong></h3>
                             </div>
 
-                            <form id="frmEditarRubric" method="post" action="/crear/rubrica/habilidad/guardar">
+                            <form method="post" action="/crear/rubrica/habilidad/guardar">
+                                @csrf
                                 <div class="card-body">
                                     <div class="form-group mb-4">
                                         <label class="mb-1">Rubrica - ID</label>
-                                        <input type="text" class="form-control" name="rc_id" required readonly value="{{$Rubrica}}">
+                                        <input type="text" class="form-control" name="rc_id" required readonly value="{{$Rubrica->id_RC}}">
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="mb-1">ID</label>
@@ -135,15 +136,15 @@
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="mb-1">Elemental</label>
-                                        <textarea type="text" class="form-control" name="elemental" required placeholder="Elemental"></textarea>
+                                        <textarea type="text" class="form-control" name="elemental" required value="{{$Habilidad->descripcion1}}"></textarea>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="mb-1">Aceptable</label>
-                                        <textarea type="text" class="form-control" name="aceptable" required placeholder="Elemental"></textarea>
+                                        <textarea type="text" class="form-control" name="aceptable" required placeholder="{{$Habilidad->descripcion2}}"></textarea>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="mb-1">Destacado</label>
-                                        <textarea type="text" class="form-control" name="destacado" required placeholder="Elemental"></textarea>
+                                        <textarea type="text" class="form-control" name="destacado" required placeholder="{{$Habilidad->descripcion2}}"></textarea>
                                     </div>
                                 </div>
 

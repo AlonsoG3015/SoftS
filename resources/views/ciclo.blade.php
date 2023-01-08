@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -109,17 +111,29 @@
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-3">
-                        <div class="col-sm-9 ">
+                        <div class="col-sm-9">
                             <h1>{{$semestre}}</h1>
                         </div>
                         @if (session()->get('rol') == 1 )
                         <div class="col col-sm-3 col-auto align-self-end">
                             <button type="button" class=" btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
                                 <i class="fas fa-layer-group"></i>
-                                Nuevo Ciclo
+                                Nuevo Curso
                             </button>
                         </div>
                         @endif
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row justify-content-end">
+                        <div class="col col-sm-3 align-self-end">
+                            @if (session()->has('message'))
+                            <div class="alert alert-success fade show rounded alert-dismissible" role="alert">
+                                <strong>{{ session()->get('message') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </section>
@@ -167,22 +181,21 @@
                                     <input type="text" class="form-control" name="nombre" required>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label for="inputNombre">Ciclo</label>
-                                    <input type="text" class="form-control" name="ciclo" required disabled value="{{$semestre}}" style="font-weight: bold;">
+                                    <label class="mb-1">Ciclo</label>
+                                    <input type="text" class="form-control" name="ciclo" required readonly value="{{$semestre}}">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Docente</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="docente">
                                         @foreach ($lstDocentes as $Docente)
                                         <option name="docente" value="{{ $Docente->id_Docente }}">{{ $Docente->usuario->persona->nombres }} {{ $Docente->usuario->persona->apellidos }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-
                             </form>
                         </div>
                         <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             <button type="submit" form="frmNuevoCurso" class="btn btn-success">Guardar</button>
                         </div>
                     </div>
@@ -204,6 +217,8 @@
     <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
     <script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 

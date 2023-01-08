@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
     <link rel="stylesheet" href="/css/App/rubrica.css" type="text/css" />
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
@@ -114,6 +114,18 @@
                     </ul>
                 </div>
                 @endif
+                <div class="container-fluid align-items-end">
+                    <div class="row justify-content-end">
+                        <div class="col-sm-3">
+                            @if (session()->has('message'))
+                            <div class="alert alert-success fade show rounded alert-dismissible" role="alert">
+                                {{ session()->get('message') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </section>
             <section class="content">
                 <div class="container-fluid">
@@ -352,8 +364,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#tabla_rubrica').DataTable({
-            });
+            $('#tabla_rubrica').DataTable({});
         });
     </script>
 

@@ -105,8 +105,6 @@
                         <div class="col-sm-9">
                             <h1>Perfil</h1>
                         </div>
-
-
                         @if (session()->has('message'))
                         <div class="alert alert-success col-sm-3 fade show rounded alert-dismissible" role="alert">
                             {{ session()->get('message') }}

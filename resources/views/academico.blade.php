@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
-    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -112,6 +114,24 @@
                             </button>
                         </div>
                         @endif
+                        @if (session()->has('message'))
+                        <div class="alert alert-success col-sm-3 fade show rounded alert-dismissible" role="alert">
+                            {{ session()->get('message') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row justify-content-end">
+                        <div class="col col-sm-3 align-self-end">
+                            @if (session()->has('message'))
+                            <div class="alert alert-success fade show rounded alert-dismissible" role="alert">
+                                <strong>{{ session()->get('message') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </section>
@@ -130,11 +150,10 @@
                             </a>
                         </div>
                         @endforeach
-
                     </div>
                 </div>
             </section>
-            <form class="modal fade" id="modal-default" aria-hidden="true">
+            <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -145,25 +164,27 @@
                         </div>
                         <div class="modal-body">
                             <form id="frmNuevoCiclo" method="post" action="/ciclo/guardar">
+                                @csrf
                                 <div class="form-group mb-4">
-                                    <label for="exampleInputEmail2" class="mb-1">Semestre Acad&eacute;mico</label>
-                                    <input type="text" class="form-control" name="id_Semestre" id="exampleInputEmail2" maxlength="7">
+                                    <label class="mb-1">Semestre Acad&eacute;mico</label>
+                                    <input type="text" class="form-control" name="semestre" maxlength="7" required>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="mb-1">Escuela Profesional</label>
-                                    <input type="text" class="form-control" name="id_Escuela" id="exampleInputEmail2" disabled value="{{$lstCarreras->carrera}}" style="font-weight: bold;">
+                                    <input type="text" class="form-control" name="escuela" readonly value="{{$lstCarreras->carrera}}">
+                                    <input type="hidden" class="form-control" name="id_Escuela" value="{{$lstCarreras->id_Carr}}" required>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" form="frmNuevoCurso" class="btn btn-success">Nuevo Ciclo</button>
+                            <button type="submit" form="frmNuevoCiclo" class="btn btn-success">Nuevo Ciclo</button>
                         </div>
                     </div>
 
                 </div>
 
-            </form>
+            </div>
 
         </div>
 
@@ -177,6 +198,8 @@
     <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
     <script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 

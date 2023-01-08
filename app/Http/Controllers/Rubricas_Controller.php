@@ -14,7 +14,8 @@ class Rubricas_Controller extends Controller
     {
         $rubrica = Rubrica::with('hb_cursos.habilidad_blanda')->where('id_RC', $id_RC)->first();
         return view('rubrica')
-            ->with('Rubrica', $rubrica);
+            ->with('Rubrica', $rubrica)
+            ->with('message', '¡Rúbrica ' . $rubrica->nombre_rub . ' creada correctamente!');
     }
 
     public function retornarRubricaxHabilidades($id_Rubric, $id_hb_curso)
@@ -24,7 +25,7 @@ class Rubricas_Controller extends Controller
         foreach ($rubrica->hb_cursos as $hbxcurso) {
             if ($hbxcurso->id_hb_curso) {
                 return view('editarhabilidad')
-                    ->with('Rubrica', $rubrica->id_RC)
+                    ->with('Rubrica', $rubrica)
                     ->with('Habilidad', $hbxcurso->habilidad_blanda);
             }
         }
@@ -39,18 +40,18 @@ class Rubricas_Controller extends Controller
         $aceptable = $request->input('aceptable');
         $destacado = $request->input('destacado');
 
-        $rubrica = Rubrica::where('id_RC', $rubrica_id )->with('hb_cursos.habilidad_blanda')->first();
+        $rubrica = Rubrica::where('id_RC', $rubrica_id)->with('hb_cursos.habilidad_blanda')->first();
 
-        // foreach($rubrica as $rubrica){
-        //     foreach($rubrica->hb_cursos as $habilidad){
-        //         $habilidad->descripcion1 = $elemental;
-        //         $habilidad->descripcion2 = $aceptable;
-        //         $habilidad->descripcion3 = $destacado;
-        //     }
+        // foreach ($rubrica->hb_cursos as $habilidadxcurso) {
+        //     $habilidadxcurso->habilidad_blanda->descripcion1 = $elemental;
+        //     $habilidadxcurso->habilidad_blanda->descripcion2 = $aceptable;
+        //     $habilidadxcurso->habilidad_blanda->descripcion3 = $destacado;
+        //     $habilidadxcurso->save();
         // }
+        // $rubrica->save();
 
         // return view('curso')->with("rubrica", $rubrica_id);
 
-        // dd($request);
+        return $rubrica;
     }
 }
