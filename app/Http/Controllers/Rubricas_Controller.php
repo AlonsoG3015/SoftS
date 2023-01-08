@@ -49,6 +49,6 @@ class Rubricas_Controller extends Controller
             }
         }
 
-        return redirect('/curso')->back();
+        return redirect('/');
     }
 }
