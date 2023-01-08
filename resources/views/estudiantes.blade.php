@@ -131,7 +131,7 @@
 
                         <hr>
 
-                        <table id="rubrica" class="ui celled table m-4" style="width:100%">
+                        <table id="rubrica" class="ui celled table table-striped" style="width:80%">
                             <thead>
                                 <tr>
                                     <th>Competencia/Criterio</th>
