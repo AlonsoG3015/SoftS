@@ -125,55 +125,38 @@
 
 
 
-            <div class="container">
+            <div class="content">
                 <div class="row">
                     <div class="col-md-12">
 
                         <hr>
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Projects</h3>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body p-0">
+                        <table id="rubrica" class="ui celled table m-4" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Competencia/Criterio</th>
+                                    <th width="70">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($Estudiantes as $estudiante)
+                                <tr>
+                                    <th>{{$estudiante}}</th>
+                                    <th>
+                                        <form>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="" type="button" class="btn btn-info align-self-stretch">
+                                                    <i class="fas fa-edit"></i>
+                                                    Editar
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </th>
+                                </tr>
+                                @endforeach
+                            </tbody>
 
-                                <table id="rubrica" class="ui celled table" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Competencia/Criterio</th>
-                                            <th width="70">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($Estudiantes as $estudiante)
-                                        <tr>
-                                            <th>{{$estudiante}}</th>
-                                            <th>
-                                                <form>
-                                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="" type="button" class="btn btn-info align-self-stretch">
-                                                            <i class="fas fa-edit"></i>
-                                                            Editar
-                                                        </a>
-                                                    </div>
-                                                </form>
-                                            </th>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-
-                                </table>
-                            </div>
-
-                        </div>
+                        </table>
 
 
 
