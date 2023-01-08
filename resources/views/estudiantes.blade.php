@@ -136,7 +136,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Estudiantes->as $estudiante)
+                                @foreach($Estudiantes as $estudiante)
                                 <tr>
                                     <th>{{$estudiante}}</th>
                                     <!-- <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
