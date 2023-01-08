@@ -136,6 +136,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($Rubrica->hb_cursos as $habilidadxcurso)
                                 <tr>
                                     <th>{{$habilidadxcurso->habilidad_blanda->habilidad}}</th>
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
@@ -152,6 +153,7 @@
                                         </form>
                                     </th>
                                 </tr>
+                                @endforeach
                             </tbody>
 
                         </table>
