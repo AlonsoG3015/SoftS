@@ -82,7 +82,7 @@ class Usuario_Controller extends Controller
 
     public function exit_User(Request $request)
     {
-        session()->flush();
+        $request->session()->flush();
         redirect('/login', 301);
     }
 }
