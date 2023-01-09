@@ -164,7 +164,7 @@
                                         <form>
                                             @csrf
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="/crear/rubrica/habilidad/{{$Rubrica->id_RC}}/{{$habilidadxcurso->habilidad_blanda->id_HB}}" type="button" class="btn btn-info align-self-stretch">
+                                                <a href="/editar/rubrica/habilidad/{{$Rubrica->id_RC}}/{{$habilidadxcurso->habilidad_blanda->id_HB}}" type="button" class="btn btn-info align-self-stretch">
                                                     <i class="fas fa-edit"></i>
                                                     Editar
                                                 </a>
@@ -177,43 +177,9 @@
 
                         </table>
 
-
-                        <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <form class="form" action="" method="POST">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Editar Criterio</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <input type="hidden" name="id">
-
-                                            <div class="form-group">
-                                                <label for="name">{{$habilidadxcurso->habilidad_blanda->habilidad}}</label>
-                                                <input type="text" name="name" class="form-control input-sm">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="phone">Phone</label>
-                                                <input type="text" name="phone" class="form-control input-sm">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="dob">DOB</label>
-                                                <input type="date" name="dob" class="form-control input-sm">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary btn-save">Save</button>
-                                            <button type="button" class="btn btn-primary btn-update">Update</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="px-2 modal-footer justify-content-between">
+                            <a type="button" class="btn btn-lg btn-secondary">Curso</a>
                         </div>
-
                     </div>
                 </div>
             </div>

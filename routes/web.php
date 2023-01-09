@@ -48,13 +48,17 @@ Route::middleware(['validatedLogin'])->group(function () {
 
     Route::get('/lineas', [Linea_Controller::class, 'retornarLinea']);
 
-    Route::get('/crear/rubrica/{id_RC}', [Rubricas_Controller::class, 'retornarCrearRubrica']);
-
-    Route::get('/crear/rubrica/habilidad/{id_RC}/{id_HB}', [Rubricas_Controller::class, 'retornarRubricaxHabilidades']);
-
-    Route::post('/crear/rubrica/habilidad/guardar', [Rubricas_Controller::class, 'guardarHabilidad']);
-
     Route::post('/rubrica/guardar', [Rubricas_Controller::class, 'guardarRubrica']);
+
+    Route::get('/editar/rubrica/{id_RC}', [Rubricas_Controller::class, 'retornarCrearRubrica']);
+
+    Route::get('/editar/rubrica/habilidad/{id_RC}/{id_HB}', [Rubricas_Controller::class, 'retornarRubricaxHabilidades']);
+
+    Route::get('/evaluar/rubrica/{id_Curso}/{id_RC}', [Rubricas_Controller::class, 'retornarEstudiantesxRubrica']);
+
+    Route::get('/estudiante/rubrica/{id_RC}/{id_Estudiante}', [Rubricas_Controller::class, 'evaluarRubricaEstudiante']);
+
+    Route::post('/editar/rubrica/habilidad/guardar', [Rubricas_Controller::class, 'guardarHabilidad']);
 
     Route::get('/estudiantes', [Usuario_Controller::class, 'retornarEstudiantesxRubricas']);
 

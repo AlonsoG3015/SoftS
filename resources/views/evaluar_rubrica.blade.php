@@ -101,7 +101,13 @@
         <div class="content-wrapper">
 
             <section class="content-header">
-
+                <div class="container-fluid">
+                    <div class="row mb-3">
+                        <div class="col-sm-6 ">
+                            <h1>{{$Rubrica[0]->nombre_rub}} // {{$Estudiante->persona->apellidos}} {{$Estudiante->persona->nombres}}</h1>
+                        </div>
+                    </div>
+                </div>
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -111,6 +117,18 @@
                     </ul>
                 </div>
                 @endif
+                <div class="container-fluid align-items-end">
+                    <div class="row justify-content-end">
+                        <div class="col-sm-3">
+                            @if (session()->has('message'))
+                            <div class="alert alert-success fade show rounded alert-dismissible" role="alert">
+                                {{ session()->get('message') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </section>
 
 
@@ -118,77 +136,73 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">{{$Habilidad->habilidad}} - <strong>{{$Rubrica->nombre_rub}}</strong></h3>
-                            </div>
 
-                            <form method="post" action="/editar/rubrica/habilidad/guardar">
-                                @csrf
-                                <div class="card-body">
-                                    <div class="form-group mb-4">
-                                        <label class="mb-1">Rubrica - ID</label>
-                                        <input type="text" class="form-control" name="rc_id" required readonly value="{{$Rubrica->id_RC}}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="mb-1">ID</label>
-                                        <input type="text" class="form-control" name="id" required readonly value="{{$Habilidad->id_HB}}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="mb-1">Elemental</label>
-                                        <textarea type="text" class="form-control" name="elemental" required placeholder="{{$Habilidad->descripcion1}}"></textarea>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="mb-1">Aceptable</label>
-                                        <textarea type="text" class="form-control" name="aceptable" required placeholder="{{$Habilidad->descripcion2}}"></textarea>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="mb-1">Destacado</label>
-                                        <textarea type="text" class="form-control" name="destacado" required placeholder="{{$Habilidad->descripcion3}}"></textarea>
-                                    </div>
-                                </div>
+                        <hr>
 
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-lg btn-success">Guardar</button>
-                                </div>
-                            </form>
+                        <table id="rubrica" class="ui celled table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Competencia/Criterio</th>
+                                    <th>Elemental</th>
+                                    <th>Aceptable</th>
+                                    <th>Destacado</th>
+                                    <th width="70">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($Rubrica[0]->hb_cursos as $habilidadxcurso)
+                                <tr>
+                                    <th>{{$habilidadxcurso->habilidad_blanda->habilidad}}</th>
+                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
+                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion2}}</th>
+                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th>
+                                    <th class="span ui input">
+                                        <input>
+                                    </th>
+                                </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
+
+                        <div class="px-2 modal-footer justify-content-between">
+                            <a type="button" class="btn btn-lg btn-success">Guardar</a>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-
         </div>
 
+    </div>
 
-        <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
 
-        <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
 
-        <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js"></script>
 
-        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.semanticui.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.semanticui.min.js"></script>
-        <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
-        <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
-        <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
-        <script src="https://editor.datatables.net/extensions/Editor/js/editor.semanticui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                $('#rubrica').DataTable();
-            });
-        </script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.semanticui.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.semanticui.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
+    <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
+    <script src="https://editor.datatables.net/extensions/Editor/js/editor.semanticui.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#rubrica').DataTable();
+        });
+    </script>
 
 </body>
 

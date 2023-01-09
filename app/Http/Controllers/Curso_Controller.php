@@ -46,11 +46,16 @@ class Curso_Controller extends Controller
         $lstEstudiantes = Curso::with('estudiantes.persona')->where('id_Curso', $curso->id_Curso)->first();
         $lstHabilidades = Curso::with('habilidad_curso')->where('id_Curso', $curso->id_Curso)->first();
         $curso = Curso::where('id_Curso', $id_Curso)->first();
-        $rubricas = Rubrica::with('hb_cursos')->get();
+        $habilidadxrubrica = HB_Curso::where('Curso_id', $id_Curso)->with('rubricas')->first();
+
+        $rubricas = array();
+        foreach($habilidadxrubrica->rubricas as $rubrica){
+            $rubricas[] = $rubrica;
+        }
 
         return view('curso')
             ->with('Docente', $docente)
-            ->with('Rubrica', $rubricas)
+            ->with('Rubricas', $rubricas)
             ->with('lstHabilidades', $lstHabilidades)
             ->with('lstEstudiantes', $lstEstudiantes)
             ->with('lstNiveles_Ru', $lstNiveles)

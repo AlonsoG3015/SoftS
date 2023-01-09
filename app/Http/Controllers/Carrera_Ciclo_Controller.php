@@ -11,6 +11,8 @@ use App\Models\Carrera_Ciclo;
 use App\Models\Linea;
 use App\Models\Docente;
 use App\Models\Curso;
+use App\Models\Estudiante;
+use App\Models\Rubrica;
 
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\AssignOp\Concat;
@@ -86,8 +88,12 @@ class Carrera_Ciclo_Controller extends \App\Http\Controllers\Controller
         $lstSemestre = Semestre::all();
         $lstCarreras = Carrera::where('id_Carr', 14)->first();
 
-        return view('academico')
-            ->with('lstSemestre', $lstSemestre)
-            ->with('lstCarreras', $lstCarreras);
+        $estudiante = Estudiante::where('id_Estudiante', 1)->with('rubricas.hb_cursos.habilidad_blanda')->first();
+
+        return $estudiante;
+
+        // return view('academico')
+        //     ->with('lstSemestre', $lstSemestre)
+        //     ->with('lstCarreras', $lstCarreras);
     }
 }

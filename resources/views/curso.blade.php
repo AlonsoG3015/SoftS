@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="/css/App/rubrica.css" type="text/css" />
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
@@ -156,7 +158,7 @@
                                 <div class="card-header p-2">
                                     <ul class="nav nav-pills">
                                         <li class="nav-item"><a class="nav-link active" href="#rubrica" data-toggle="tab">R&uacute;bricas</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#evaluacion" data-toggle="tab">Evaluaci&oacute;n</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#estudiantes" data-toggle="tab">Estudiantes</a></li>
                                         <li class="nav-item right-4">
                                             <button type="button" class="btn btn-block" style="background-color: #0374b5; color:white" data-toggle="modal" data-target="#modal-default">
                                                 <i class="fas fa-layer-group"></i>
@@ -172,38 +174,33 @@
                                                 <div class="row">
                                                     <div class="col-12">
 
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <table id="example1" class="table table-bordered table-striped">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>ID</th>
-                                                                            <th>Nombre</th>
-                                                                            <th>Apellidos</th>
-                                                                            <th>Ciclo</th>
-                                                                            <th>Accion</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>000123457</td>
-                                                                            <td>Alumno 1</td>
-                                                                            <td>Apellido 1</td>
-                                                                            <td>X</td>
-                                                                            <td>X</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>000123456</td>
-                                                                            <td>Alumno 1</td>
-                                                                            <td>Apellido 1</td>
-                                                                            <td>X</td>
-                                                                            <td>X</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-
-                                                        </div>
+                                                        <table id="example1" class="ui celled table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre de R&uacute;brica</th>
+                                                                    <th class="w-25">Acciones</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($Rubricas as $rubrica)
+                                                                <tr>
+                                                                    <td>{{$rubrica->nombre_rub}}</td>
+                                                                    <th class="d-flex justify-content-center">
+                                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                                            <a href="/evaluar/rubrica/{{$Curso->id_Curso}}/{{$rubrica->id_RC}}" type="button" class="btn btn-dark align-self-stretch">
+                                                                                <i class="fas fa-pen-alt"></i>
+                                                                                Evaluar
+                                                                            </a>
+                                                                            <a href="/editar/rubrica/{{$rubrica->id_RC}}" type="button" class="btn btn-info align-self-stretch">
+                                                                                <i class="fas fa-edit"></i>
+                                                                                Editar
+                                                                            </a>
+                                                                        </div>
+                                                                    </th>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
 
                                                     </div>
 
@@ -212,36 +209,29 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane" id="evaluacion">
+                                        <div class="tab-pane" id="estudiantes">
                                             <div class="container-fluid">
                                                 <div class="row">
                                                     <div class="col-12">
 
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <table id="example2" class="table table-bordered table-striped">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Nombre</th>
-                                                                            <th>Apellidos</th>
-                                                                            <th>Email</th>
-                                                                            <th>Acciones</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @foreach($lstEstudiantes->estudiantes as $Estudiante)
-                                                                        <tr>
-                                                                            <td>{{$Estudiante->persona->nombres}} </td>
-                                                                            <td>{{$Estudiante->persona->apellidos}} </td>
-                                                                            <td>{{$Estudiante->persona->email}} </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        @endforeach
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-
-                                                        </div>
+                                                        <table id="example2" class="ui celled table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>Apellidos</th>
+                                                                    <th>Email</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($lstEstudiantes->estudiantes as $Estudiante)
+                                                                <tr>
+                                                                    <td>{{$Estudiante->persona->nombres}} </td>
+                                                                    <td>{{$Estudiante->persona->apellidos}} </td>
+                                                                    <td>{{$Estudiante->persona->email}} </td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
 
                                                     </div>
 
@@ -360,6 +350,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
     <script>
