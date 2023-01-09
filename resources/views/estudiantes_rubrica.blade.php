@@ -143,36 +143,43 @@
 
                         <hr>
 
-                        <table id="rubrica" class="ui celled table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>Email</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($Curso->estudiantes as $estudiante)
-                                <tr>
-                                    <td>{{$estudiante->persona->nombres}} </td>
-                                    <td>{{$estudiante->persona->apellidos}} </td>
-                                    <td>{{$estudiante->persona->email}} </td>
-                                    <td class="d-flex justify-content-center">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a href="/estudiante/rubrica/{{$Rubrica->id_RC}}/{{$estudiante->id_Estudiante}}" type="button" class="btn btn-dark align-self-stretch">
-                                                <i class="fas fa-pen-alt"></i>
-                                                Evaluar
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="rubrica" class="ui celled table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Email</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($Curso->estudiantes as $estudiante)
+                                        <tr>
+                                            <td>{{$estudiante->persona->nombres}} </td>
+                                            <td>{{$estudiante->persona->apellidos}} </td>
+                                            <td>{{$estudiante->persona->email}} </td>
+                                            <td class="d-flex justify-content-center">
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href="/estudiante/rubrica/{{$Rubrica->id_RC}}/{{$estudiante->id_Estudiante}}" type="button" class="btn btn-dark align-self-stretch">
+                                                        <i class="fas fa-pen-alt"></i>
+                                                        Evaluar
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                        <div class="px-2 modal-footer justify-content-between">
-                            <a type="button" class="btn btn-lg btn-secondary">Curso</a>
+                        <div class="p-0 py-2 modal-footer justify-content-between">
+                            <a href="/curso/{{$Curso->id_Curso}}" type="button" class="btn btn-lg btn-secondary">
+                                <i class="fas fa-chevron-left mr-2"></i>
+                                Regresar al Curso
+                            </a>
                         </div>
                     </div>
                 </div>

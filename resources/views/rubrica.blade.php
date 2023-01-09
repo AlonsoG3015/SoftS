@@ -142,43 +142,50 @@
                     <div class="col-md-12">
 
                         <hr>
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="rubrica" class="ui celled table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Competencia/Criterio</th>
+                                            <th>Elemental</th>
+                                            <th>Aceptable</th>
+                                            <th>Destacado</th>
+                                            <th width="70">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($Rubrica->hb_cursos as $habilidadxcurso)
+                                        <tr>
+                                            <th>{{$habilidadxcurso->habilidad_blanda->habilidad}}</th>
+                                            <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
+                                            <th>{{$habilidadxcurso->habilidad_blanda->descripcion2}}</th>
+                                            <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th>
+                                            <th>
+                                                <form>
+                                                    @csrf
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="/editar/rubrica/habilidad/{{$Rubrica->id_RC}}/{{$habilidadxcurso->habilidad_blanda->id_HB}}" type="button" class="btn btn-info align-self-stretch">
+                                                            <i class="fas fa-edit"></i>
+                                                            Editar
+                                                        </a>
+                                                    </div>
+                                                </form>
+                                            </th>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
 
-                        <table id="rubrica" class="ui celled table" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Competencia/Criterio</th>
-                                    <th>Elemental</th>
-                                    <th>Aceptable</th>
-                                    <th>Destacado</th>
-                                    <th width="70">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($Rubrica->hb_cursos as $habilidadxcurso)
-                                <tr>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->habilidad}}</th>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion2}}</th>
-                                    <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th>
-                                    <th>
-                                        <form>
-                                            @csrf
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="/editar/rubrica/habilidad/{{$Rubrica->id_RC}}/{{$habilidadxcurso->habilidad_blanda->id_HB}}" type="button" class="btn btn-info align-self-stretch">
-                                                    <i class="fas fa-edit"></i>
-                                                    Editar
-                                                </a>
-                                            </div>
-                                        </form>
-                                    </th>
-                                </tr>
-                                @endforeach
-                            </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                        </table>
 
-                        <div class="px-2 modal-footer justify-content-between">
-                            <a type="button" class="btn btn-lg btn-secondary">Curso</a>
+                        <div class="p-0 py-2 modal-footer justify-content-between">
+                            <a href="/curso/{{$habilidadxcurso->Curso_id}}" type="button" class="btn btn-lg btn-secondary">
+                                <i class="fas fa-chevron-left mr-2"></i>
+                                Regresar al Curso
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -211,9 +218,7 @@
     <script src="https://editor.datatables.net/extensions/Editor/js/editor.semanticui.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#rubrica').DataTable();
-        });
+        $('#rubrica').DataTable();
     </script>
 
 </body>
