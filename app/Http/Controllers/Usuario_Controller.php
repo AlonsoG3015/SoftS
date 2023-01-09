@@ -8,9 +8,7 @@ use App\Models\Docente;
 use App\Models\Usuario;
 use App\Models\Persona;
 
-use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
-use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Usuario_Controller extends Controller
 {
@@ -80,7 +78,7 @@ class Usuario_Controller extends Controller
         $persona->apellidos = $apellidos_input;
         $persona->email = $email_input;
         $persona->save();
-        
-        return redirect('/perfil', 301)->with('message','¡Perfil Actualizado Correctamente!');
+
+        return redirect('/perfil', 301)->with('message', '¡Perfil Actualizado Correctamente!');
     }
 }

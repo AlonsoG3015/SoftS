@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carrera_Ciclo;
 use App\Models\Curso;
-use App\Models\Director;
 use App\Models\Docente;
 use App\Models\HB_Curso;
-use App\Models\Linea;
-use App\Models\Semestre;
 use App\Models\Nivel_Rubrica;
-use App\Models\Rubrica;
 use Illuminate\Http\Request;
 
 class Curso_Controller extends Controller

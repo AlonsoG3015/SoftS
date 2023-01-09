@@ -156,9 +156,12 @@
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion1}}</th>
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion2}}</th>
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th>
-                                    <th class="span ui input">
-                                        <input>
-                                    </th>
+                                    <form id="frmPuntaje" method="post" action="/rubrica/puntaje/guardar">
+                                        <th class="span ui input">
+                                            <input name="puntaje" type="number" maxlength="2">
+                                        </th>
+                                    </form>
+
                                 </tr>
                                 @endforeach
                             </tbody>
