@@ -79,4 +79,10 @@ class Usuario_Controller extends Controller
 
         return redirect('/perfil', 301)->with('message', '¡Perfil Actualizado Correctamente!');
     }
+
+    public function exit_User(Request $request)
+    {
+        session()->flush();
+        redirect('/login', 301);
+    }
 }

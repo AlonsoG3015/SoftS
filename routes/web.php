@@ -69,4 +69,6 @@ Route::middleware(['validatedLogin'])->group(function () {
     Route::get('/mantenimiento_usuarios', function () {
         return view('mantenimiento_usuarios');
     });
+
+    Route::post('/salir', [Usuario_Controller::class, 'exit_User']);
 });
