@@ -146,7 +146,7 @@
                                     <th>Elemental</th>
                                     <th>Aceptable</th>
                                     <th>Destacado</th>
-                                    <th width="70">Action</th>
+                                    <th width="70">PUNTAJE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -158,7 +158,7 @@
                                     <th>{{$habilidadxcurso->habilidad_blanda->descripcion3}}</th>
                                     <form id="frmPuntaje" method="post" action="/rubrica/puntaje/guardar">
                                         <th class="span ui input">
-                                            <input name="puntaje" type="number" maxlength="2">
+                                            <input name="puntaje" type="number" maxlength="2" min="0">
                                         </th>
                                     </form>
 
@@ -169,7 +169,7 @@
                         </table>
 
                         <div class="px-2 modal-footer justify-content-between">
-                            <a type="button" class="btn btn-lg btn-success">Guardar</a>
+                            <button form="frmPuntaje" type="submit" class="btn btn-lg btn-success">Guardar</button>
                         </div>
                     </div>
                 </div>

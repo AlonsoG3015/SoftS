@@ -66,6 +66,8 @@ Route::middleware(['validatedLogin'])->group(function () {
 
     Route::post('/registro_usuario/guardar', [Usuario_Controller::class, 'register_User']);
 
+    Route::post('/rubrica/puntaje/guardar', [Rubricas_Controller::class, 'guardar_Puntaje']);
+
     Route::get('/mantenimiento_usuarios', function () {
         return view('mantenimiento_usuarios');
     });

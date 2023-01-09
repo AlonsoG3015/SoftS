@@ -136,4 +136,9 @@ class Rubricas_Controller extends Controller
 
         return view('rubrica_estudiante')->with('Estudiante', $Estudiantexrubricas);
     }
+
+    public function guardar_Puntaje(Request $request)
+    {
+        dd($request);
+    }
 }
