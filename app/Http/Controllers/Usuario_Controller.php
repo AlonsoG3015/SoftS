@@ -48,18 +48,16 @@ class Usuario_Controller extends Controller
         $id = $request->session()->get('id');
         $role_id = $request->session()->get('role');
         if ($role_id == 1) {
-            $director = Director::with('usuario.persona')->with('carrera_ciclo')->where('Usuario_id', $id)->first();
+            $director = Director::where('Usuario_id', $id)->with('usuario.persona')->with('carrera_ciclo')->first();
             return view('perfil')->with('Usuario', $director);
-        } else {
-
-            $usuario = Docente::with('usuario.persona')->with('cursos.linea.carrera_ciclo.semestre')->where('Usuario_id', $id)->first();
-            return view('perfil')->with('Usuario', $usuario);
         }
+        $usuario = Docente::with('usuario.persona')->with('cursos.linea.carrera_ciclo.semestre')->where('Usuario_id', $id)->first();
+        return view('perfil')->with('Usuario', $usuario);
     }
 
     public function retornarEstudiantesxRubricas()
     {
-        $estudiantes = Estudiante::with('rubricas')->get();
+        $estudiantes = Estudiante::all();
         return view('estudiantes')
             ->with('Estudiantes', $estudiantes);
     }

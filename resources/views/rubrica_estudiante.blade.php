@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SoftS UPAO</title>
 
-
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css">
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -24,6 +23,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
 
     <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.semanticui.min.css">
+
 
 </head>
 
@@ -104,11 +104,7 @@
                 <div class="container-fluid">
                     <div class="row mb-3">
                         <div class="col-sm-6 ">
-
-                            <div class="col-sm-6 ">
-                                <h1>Lista de Estudiantes</h1>
-                            </div>
-
+                            <h1>{{$Estudiante->persona->nombres}} {{$Estudiante->persona->apellidos}}</h1>
                         </div>
                     </div>
                 </div>
@@ -121,42 +117,65 @@
                     </ul>
                 </div>
                 @endif
+                <div class="container-fluid align-items-end">
+                    <div class="row justify-content-end">
+                        <div class="col-sm-3">
+                            @if (session()->has('message'))
+                            <div class="alert alert-success fade show rounded alert-dismissible" role="alert">
+                                {{ session()->get('message') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </section>
 
 
 
-            <div class="content">
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
                         <hr>
+                        @foreach($Estudiante->rubricas as $rubrica)
                         <table id="rubrica" class="ui celled table" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Estudiantes</th>
-                                    <th width="110">Action</th>
+                                    <th>Competencia/Criterio</th>
+                                    <th>Elemental</th>
+                                    <th>Aceptable</th>
+                                    <th>Destacado</th>
+                                    <th width="70">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Estudiantes as $estudiante)
+
                                 <tr>
-                                    <th id="datos">{{$estudiante->persona->nombres}} {{$estudiante->persona->apellidos}}</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                     <th>
                                         <form>
                                             @csrf
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="/estudiantes/rubricas/{{$estudiante->id_Estudiante}}" type="button" class="btn btn-info align-self-stretch">
-                                                    <i class="fas fa-eye"></i>
-                                                    Ver r&uacute;bricas
+                                                <a href="" type="button" class="btn btn-info align-self-stretch">
+                                                    <i class="fas fa-edit"></i>
+                                                    Editar
                                                 </a>
                                             </div>
                                         </form>
                                     </th>
                                 </tr>
-                                @endforeach
                             </tbody>
 
                         </table>
+                        @endforeach
 
+                        <div class="px-2 modal-footer justify-content-between">
+                            <a type="button" class="btn btn-lg btn-secondary">Curso</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -129,4 +129,11 @@ class Rubricas_Controller extends Controller
             ->with('Estudiante', $estudiante)
             ->with('Rubrica', $rubrica);
     }
+
+    public function retornarRubricasxEstudiante($id_Estudiante)
+    {
+        $Estudiantexrubricas = Estudiante::where('id_Estudiante', $id_Estudiante)->with('rubricas')->with('persona')->first();
+
+        return view('rubrica_estudiante')->with('Estudiante', $Estudiantexrubricas);
+    }
 }

@@ -58,6 +58,8 @@ Route::middleware(['validatedLogin'])->group(function () {
 
     Route::get('/estudiante/rubrica/{id_RC}/{id_Estudiante}', [Rubricas_Controller::class, 'evaluarRubricaEstudiante']);
 
+    Route::get('/estudiantes/rubricas/{id_Estudiante}', [Rubricas_Controller::class, 'retornarRubricasxEstudiante']);
+
     Route::post('/editar/rubrica/habilidad/guardar', [Rubricas_Controller::class, 'guardarHabilidad']);
 
     Route::get('/estudiantes', [Usuario_Controller::class, 'retornarEstudiantesxRubricas']);
