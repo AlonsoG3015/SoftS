@@ -355,12 +355,6 @@
 
 
     <script>
-        $(document).ready(function() {
-            $('#tabla_rubrica').DataTable({});
-        });
-    </script>
-
-    <script>
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,

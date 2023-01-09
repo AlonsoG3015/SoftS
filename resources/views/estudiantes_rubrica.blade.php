@@ -153,7 +153,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Rubrica->estudiantes as $estudiante)
+                                @foreach($Curso->estudiantes as $estudiante)
                                 <tr>
                                     <td>{{$estudiante->persona->nombres}} </td>
                                     <td>{{$estudiante->persona->apellidos}} </td>

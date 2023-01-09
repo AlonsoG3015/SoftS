@@ -105,7 +105,8 @@ class Rubricas_Controller extends Controller
 
     public function retornarEstudiantesxRubrica($id_Curso, $id_RC)
     {
-        $cursoxestudiantes = Curso::with('estudiantes')->where('id_Curso', $id_Curso)->first();
+        $curso = Curso::with('linea')->where('id_Curso', '=', $id_Curso)->first();
+        $cursoxestudiantes = Curso::with('estudiantes.persona')->where('id_Curso', $curso->id_Curso)->first();
         $rubrica = Rubrica::where('id_RC', $id_RC)->first();
 
         return view('estudiantes_rubrica')
