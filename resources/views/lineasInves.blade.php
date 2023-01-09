@@ -127,7 +127,6 @@
                                                 <th>ID</th>
                                                 <th>Nombre de Linea</th>
                                                 <th>Ciclo</th>
-                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
